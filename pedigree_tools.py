@@ -1,8 +1,8 @@
-import argparse
 from dataclasses import dataclass
 import pickle
 import typing
 
+import click
 import msprime
 import numpy as np
 import tskit
@@ -16,60 +16,108 @@ class PedigreeRecord:
     sex: typing.Optional[int]
 
 
-def make_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
-
-    subparsers = parser.add_subparsers(help="subcommand help")
-
-    simulate = subparsers.add_parser("simulate", help="simulate a random pedigree")
-    simulate.add_argument("--individuals", "-i", type=int, help="number of individuals")
-    simulate.add_argument("--generations", "-g", type=int, help="number of generations")
-    simulate.add_argument("--outfile", "-o", type=str, help="output file name")
-    simulate.add_argument("--seed", "-s", type=int, help="random number seed")
-
-    tables = subparsers.add_parser(
-        "make_tables", help="make table collection from pedigree records"
+@click.command(
+    help="""
+Simulate a pedigree with a costant number of individuals each generation.
+The simulation enforces strict monogamy.
+For all generations except the last, the sex ratio is kept at exactly 50/50.
+"""
+)
+@click.option("--individuals", "-i", type=int, help="Number of founder individuals")
+@click.option("--generations", "-g", type=int, help="Number of generations to simulate")
+@click.option(
+    "--outfile",
+    "-o",
+    type=str,
+    help="Output file name to write pedigree records."
+    " The format is Python's pickle.",
+)
+@click.option("--seed", "-s", type=int, help="Random number seed.")
+def simulate(individuals, generations, outfile, seed):
+    records = strict_monogamy(
+        individuals,
+        generations,
+        seed,
     )
-    tables.add_argument("--infile", "-i", type=str, help="pedigree records file")
-    tables.add_argument(
-        "--tables", "-t", type=str, help="output file for a tskit.TableCollection"
-    )
-    tables.add_argument("--sequence_length", "-l", type=float, help="genome_length")
+    with open(outfile, "wb") as f:
+        pickle.dump(records, f)
 
-    dataframe = subparsers.add_parser(
-        "make_dataframe", help="make table collection from pedigree records"
-    )
-    dataframe.add_argument("--infile", "-i", type=str, help="pedigree records file")
-    dataframe.add_argument(
-        "--dataframe", "-d", type=str, help="output file for data frame"
-    )
 
-    return parser
+@click.command(help="Convert pedigree records to a tskit.TableCollection.")
+@click.option(
+    "--infile",
+    "-i",
+    help="Input file name." " Should be an output file from the 'simulate' subcommand.",
+)
+@click.option("--outfile", "-o", help="File name to write the TableCollection.")
+@click.option("--sequence_length", "-l", type=int, help="Length of the genome (bp).")
+def tables(infile, outfile, sequence_length):
+    with open(infile, "rb") as f:
+        records = pickle.load(f)
+        tc = records_to_pedigree(records, sequence_length)
+        tc.dump(outfile)
+
+
+@click.command(help="Convert pedigree records into a text file.")
+@click.option(
+    "--infile",
+    "-i",
+    help="The input file name."
+    " Should be an output file from the 'simulate' subcommand.",
+)
+@click.option(
+    "--outfile",
+    "-o",
+    help="Output file name." " Format is compatible with R's kinship2 package.",
+)
+def dataframe(infile, outfile):
+    with open(infile, "rb") as f:
+        records = pickle.load(f)
+        df = records_to_dataframe(records)
+        with open(outfile, "w") as f:
+            f.write(df)
+
+
+@click.command(
+    help="""
+Make a tskit.TreeSequence from a tskit.TableCollection using msprime's
+fixed pedigree model.
+"""
+)
+@click.option(
+    "--input", "-i", help="Input file name. Contents are the TableCollection."
+)
+@click.option("--outfile", "-o", help="Output file name.")
+@click.option("--recombination", "-r", help="Recombination rate (per bp).")
+@click.option("--seed", "-s", type=int, help="Random number seed.")
+def treeseq(input, recombination, outfile, seed):
+    tc = tskit.TableCollection.load(input)
+    ts = msprime.sim_ancestry(
+        initial_state=tc,
+        model="fixed_pedigree",
+        recombination_rate=recombination,
+        additional_nodes=(
+            msprime.NodeType.RECOMBINANT
+            | msprime.NodeType.PASS_THROUGH
+            | msprime.NodeType.COMMON_ANCESTOR
+        ),
+        coalescing_segments_only=False,
+        random_seed=seed,
+    )
+    ts.dump(outfile)
+
+
+@click.group()
+def do_work():
+    pass
 
 
 def main():
-    parser = make_parser()
-    parsed = parser.parse_args()
-
-    if "individuals" in parsed:
-        records = strict_monogamy(
-            parsed.individuals,
-            parsed.generations,
-            parsed.seed,
-        )
-        with open(parsed.outfile, "wb") as f:
-            pickle.dump(records, f)
-    elif "tables" in parsed:
-        with open(parsed.infile, "rb") as f:
-            records = pickle.load(f)
-            tables = records_to_pedigree(records, parsed.sequence_length)
-            tables.dump(parsed.tables)
-    elif "dataframe" in parsed:
-        with open(parsed.infile, "rb") as f:
-            records = pickle.load(f)
-            df = records_to_dataframe(records)
-            with open(parsed.dataframe, "w") as f:
-                f.write(df)
+    do_work.add_command(simulate)
+    do_work.add_command(tables)
+    do_work.add_command(dataframe)
+    do_work.add_command(treeseq)
+    do_work()
 
 
 def strict_monogamy(

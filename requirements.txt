@@ -1,0 +1,6 @@
+click
+msprime
+tskit
+jupyterlab
+jupyter-contrib-nbextensions
+notebook < 7
