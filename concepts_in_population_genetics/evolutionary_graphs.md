@@ -1,4 +1,4 @@
-# Thinking about graphs
+# Evolutionary graphs
 
 ## Species trees
 
@@ -7,7 +7,11 @@ The y axis depicts time in the *past*, which is increasing from the bottom to th
 The time units are "millions of years ago", or `mya`.
 
 
-![](../figures/human_chimp_gorilla.svg)
+```{figure} ../figures/human_chimp_gorilla.svg
+:name: human_chimp_gorilla
+
+A "species tree" showing the relationship between three species: human, chimpanzee, and gorilla.
+```
 
 The image contains the following elements:
 
@@ -36,7 +40,9 @@ Further, because the graph is oriented with respect to *time in the past*, we ca
 To illustrate this final point in more detail, let us show the same tree with each branch given a different color:
 
 
-![](../figures/human_chimp_gorilla_colored_edges.svg)
+```{figure} ../figures/human_chimp_gorilla_colored_edges.svg
+The same species tree as {numref}`human_chimp_gorilla` with the branches now colored.
+```
 
 We have the following branches and *branch lengths*:
 
@@ -91,8 +97,10 @@ Let's perform our steps:
 2. It occurs on the `H/C/G` to `H/C` branch.
 3. Tracing down the tree to the present day, we find that the tips are Human and Chimp. Therefore, human and chimp *both* have a `C` at position 42 of the genome!
 
-
-![](../figures/human_chimp_gorilla_with_mutations.svg)
+```{figure} ../figures/human_chimp_gorilla_with_mutations.svg
+:name: human_chimp_gorilla_with_mutations
+Adding mutations to our species tree.
+```
 
 ### Multiple mutations at a site
 
@@ -105,7 +113,11 @@ Mutations happen every generation, and over long time periods, the same site can
 
 The following graphic illustrates such "multiple hits":
 
-![](../figures/human_chimp_gorilla_with_multiple_hits.svg)
+```{figure} ../figures/human_chimp_gorilla_with_multiple_hits.svg
+:name: human_chimp_gorilla_with_multiple_hits
+
+A species tree where multiple mutations have occurred at the same position during evolution.
+```
 
 We now have additional mutations that occurred at positions 42 and 800.
 When mutations occur at the same position, the *ancestral* state is the *derived* state of the previous mutation at that position.  For example, at position 42, we have a mutation from `T` to `C` about 7 million years ago and then another from `C` to `T` about 0.5 million years ago on the branch leading to chimpanzees.  The result of this chain of events is that humans have a `C` at this position yet the chimp has a `T` because the second "hit" reverted the DNA sequence back to the original ancestral state (`T`).
@@ -127,20 +139,98 @@ We have to take care to recognize when different branches can have different der
 5. Branch lengths usually indicate "how much evolution" has occurred on the branch. The examples in this section are in units of time.
 6. We can trace changes on the trees from the past to the present.  These changes tell us the "state" of the tips. The examples here all trace changes in DNA sequence from the past to the present.
 
-## Pedigrees
+## Pedigrees and "gene trees"
+
+{numref}`trio` shows a simple pedigree called a "trio."
+Trios consist of two parents with a single offspring.
+This pedigree uses standard notation:
+1. Males (individuals producing sperm) are shown as squares.
+2. Females (individuals producing eggs) are shown as circles.
+
+The individuals in the pedigree have numeric labels starting with 0 (zero).
+Individuals at the top of the pedigree are ancestors to those appearing nearer the bottom.
+
+```{figure} ../figures/trio.png
+:name: trio
+
+A "trio" pedigree.
+```
+
+The edges that connect parents to children in a pedigree represent *meiosis*.
+In other words, parental chromosomes were replicated (and mutated and recombined), and then a single new chromosome was passed down to an offspring.
+
+If we consider the case of autosomal inheritance in diploid organisms like humans, then each individual contains two copies of the genome, one inherited via sperm and the other via egg.
+
+The principles of Mendelian inheritance tell us that:
+
+1. The two parents in {numref}`trio` each have two genomes. 
+   Let's label the genomes of parent 0 as `0` and `1`.
+   Let's label the genomes of parent 1 as `2` and `3`.
+2. Ignoring some details of meiosis for now (mutation and recombination), individual 4
+   will inherit genome `0` half the time and genome `1` half the time from parent `0`.
+   Likewise, parent 1 will pass on either genome `2` or genome `3` with equal probability.
+
+When discussing autosomal inheritance in diploids, we will adopt the following convention for `genome` labels:
+
+* For an *individual* in the pedigree with label $i$, that individual's two genomes will be labelled $2i$ and $2i + 1$
+
+For example, individual `7` in a pedigree will have genomes $2\times 7 = 14$ and $2\times 7 + 1 = 15$.
+This convention will allow us to track both *genes* and *individuals*.
+
+```{figure} ../figures/trio.svg
+:name: trio_tree
 
 
-![](../figures/trio.png) 
+An example of *genome* inheritance, given the pedigree structure in {numref}`trio`.
+The node labels are `individual: genome`.
+The values given for `genome` follow the convention described in the main text and individual
+labels are identical to {numref}`trio`.
+```
+
+Figure {numref}`trio_tree` shows an example of "gene dropping" applied to the pedigree from {numref}`trio`.
+Following our labelling convention described above, we see that the offspring individual (number 2) inherited its first genome (4) from genome 1 which was found in the parent individual labelled 0.
+The other genome came from genome 2 in individual 1.
+
+Figure {numref}`trio_tree` is a new type of graph that we may call a "gene tree".
+The nodes in a gene tree usually refer to gene (or genome) sequences and their ancestors.
+Figure {numref}`trio_tree` takes the extra step of tracking the specific *individual* to which each genome belongs or belonged.
+
+Fundamentally, gene trees display:
+
+1. Nodes, which refer to *genomes*. 
+2. The height of the node in the tree indicate its *birth time*.
+   In {numref}`trio_tree`, the `y` axis is in units of generations in the past.
+   Thus, the genomes belonging to the parents exist (or existed) one generation ago.
+   Each node gets a unique label.
+3. Edges display the transmission of one genome to another.
+
+{numref}`two_sibs` shows a pedigree with two siblings.
+{numref}`two_sibs_gene_dropping` and {numref}`two_sibs_gene_dropping_2` show two examples of genome inheritance given this pedigree.
+In {numref}`two_sibs_gene_dropping` , both offspring inherit the same two alleles while in {numref}`two_sibs_gene_dropping_2`, the two siblings inherit different alleles from each parent for both of their genomes.
+
+```{attention} Take a moment to practice!
+It is probably a good idea to make sure that you really understand what these images are showing.
+Instead of skimming over the graphics, take some time to make sure that you understand how the `individual: genome` annotations in {numref}`two_sibs_gene_dropping` and {numref}`two_sibs_gene_dropping_2` map on to the pedigree in {numref}`two_sibs`.
+```
+
+```{figure} ../figures/two_sibs.png
+:name: two_sibs
+
+A pedigree with two siblings.
+```
 
 
-![](../figures/trio.svg)
+```{figure} ../figures/two_sibs.svg
+:name: two_sibs_gene_dropping
 
+One example of "gene dropping" onto the pedigree from {numref}`two_sibs`.
+```
 
-![](../figures/two_sibs.png) 
+```{figure} ../figures/two_sibs_2.svg
+:name: two_sibs_gene_dropping_2
 
-
-![](../figures/two_sibs.svg)
-
+Another example of "gene dropping" onto the pedigree from {numref}`two_sibs`.
+```
 
 ![](../figures/multigen_pedigree.png)
 

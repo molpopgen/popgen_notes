@@ -8,6 +8,7 @@ FIGS:=figures/human_chimp_gorilla.svg \
 	  figures/trio.svg \
 	  figures/two_sibs.png \
 	  figures/two_sibs.svg \
+	  figures/two_sibs_2.svg \
 	  figures/multigen_pedigree.png \
 	  figures/multigen_pedigree.svg \
 	  figures/multigen_pedigree_simplified.svg \
@@ -22,6 +23,7 @@ DATA:=figures/python/trio_tables.tables \
 	  figures/python/trio.trees \
       figures/python/two_sibs_tables.tables \
 	  figures/python/two_sibs.trees \
+	  figures/python/two_sibs.trees2 \
       figures/python/multigen_tables.tables \
       figures/python/multigen.trees \
 	  figures/simulated_pedigree_1.records \
@@ -65,6 +67,9 @@ figures/two_sibs.png: figures/R/plot_simple_pedigree.R figures/R/two_sibs.txt
 figures/two_sibs.svg: pedigree_tools.py figures/python/two_sibs.trees
 	python pedigree_tools.py svg -i figures/python/two_sibs.trees -o $@
 
+figures/two_sibs_2.svg: pedigree_tools.py figures/python/two_sibs.trees2
+	python pedigree_tools.py svg -i figures/python/two_sibs.trees2 -o $@
+
 figures/multigen_pedigree.png: figures/R/plot_simple_pedigree.R figures/R/multigen_pedigree.txt
 	Rscript --vanilla figures/R/plot_simple_pedigree.R figures/R/multigen_pedigree.txt $@
 
@@ -85,6 +90,9 @@ figures/python/two_sibs_tables.tables: pedigree_tools.py figures/R/two_sibs.txt
 
 figures/python/two_sibs.trees: pedigree_tools.py figures/python/two_sibs_tables.tables
 	python pedigree_tools.py treeseq -i figures/python/two_sibs_tables.tables -o $@ -s 666
+
+figures/python/two_sibs.trees2: pedigree_tools.py figures/python/two_sibs_tables.tables
+	python pedigree_tools.py treeseq -i figures/python/two_sibs_tables.tables -o $@ -s 51251
 
 figures/python/multigen_tables.tables: pedigree_tools.py figures/R/multigen_pedigree.txt
 	python $< dataframe-to-tables -i figures/R/multigen_pedigree.txt -o $@ -l 100
