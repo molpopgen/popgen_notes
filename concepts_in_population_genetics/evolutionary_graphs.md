@@ -147,7 +147,7 @@ This pedigree uses standard notation:
 1. Males (individuals producing sperm) are shown as squares.
 2. Females (individuals producing eggs) are shown as circles.
 
-The individuals in the pedigree have numeric labels starting with 0 (zero).
+The individuals in the pedigree have numeric labels starting with 1 (one).
 Individuals at the top of the pedigree are ancestors to those appearing nearer the bottom.
 
 ```{figure} ../figures/trio.png
