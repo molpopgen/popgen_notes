@@ -150,12 +150,12 @@ def generate_node_map(ts, idmap) -> typing.Optional[dict]:
                 revidmap[j] = i
         node_labels = {}
         for i, n in enumerate(ts.nodes()):
-            node_labels[i] = f"{n.individual}: {revidmap[i]}"
+            node_labels[i] = f"{n.individual + 1}: {revidmap[i] + 1}"
         return node_labels
 
     node_labels = {}
     for i, n in enumerate(ts.nodes()):
-        node_labels[i] = f"{n.individual}: {i}"
+        node_labels[i] = f"{n.individual + 1}: {i + 1}"
     return node_labels
 
 
