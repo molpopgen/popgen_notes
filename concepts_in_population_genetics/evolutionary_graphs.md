@@ -164,17 +164,17 @@ If we consider the case of autosomal inheritance in diploid organisms like human
 The principles of Mendelian inheritance tell us that:
 
 1. The two parents in {numref}`trio` each have two genomes. 
-   Let's label the genomes of parent 0 as `0` and `1`.
-   Let's label the genomes of parent 1 as `2` and `3`.
-2. Ignoring some details of meiosis for now (mutation and recombination), individual 4
-   will inherit genome `0` half the time and genome `1` half the time from parent `0`.
-   Likewise, parent 1 will pass on either genome `2` or genome `3` with equal probability.
+   Let's label the genomes of parent 1 as `1` and `2`.
+   Let's label the genomes of parent 2 as `3` and `4`.
+2. Ignoring some details of meiosis for now (mutation and recombination), individual 3
+   will inherit genome `1` half the time and genome `2` half the time from parent `1`.
+   Likewise, parent 1 will pass on either genome `3` or genome `4` with equal probability.
 
 When discussing autosomal inheritance in diploids, we will adopt the following convention for `genome` labels:
 
-* For an *individual* in the pedigree with label $i$, that individual's two genomes will be labelled $2i$ and $2i + 1$
+* For an *individual* in the pedigree with label $i$, that individual's two genomes will be labelled $2i - 1$ and $2i$
 
-For example, individual `7` in a pedigree will have genomes $2\times 7 = 14$ and $2\times 7 + 1 = 15$.
+For example, individual `7` in a pedigree will have genomes $2\times 7 - 1 = 13$ and $2\times 7 = 14$.
 This convention will allow us to track both *genes* and *individuals*.
 
 ```{figure} ../figures/trio.svg
@@ -188,8 +188,8 @@ labels are identical to {numref}`trio`.
 ```
 
 Figure {numref}`trio_tree` shows an example of "gene dropping" applied to the pedigree from {numref}`trio`.
-Following our labelling convention described above, we see that the offspring individual (number 2) inherited its first genome (4) from genome 1 which was found in the parent individual labelled 0.
-The other genome came from genome 2 in individual 1.
+Following our labelling convention described above, we see that the offspring individual (number 3) inherited its first genome (3) from genome 2 which was found in the parent individual labelled 1.
+The other genome came from genome 3 in individual 2.
 
 Figure {numref}`trio_tree` is a new type of graph that we may call a "gene tree".
 The nodes in a gene tree usually refer to gene (or genome) sequences and their ancestors.
