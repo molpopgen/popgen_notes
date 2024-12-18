@@ -126,8 +126,8 @@ def dataframe_to_tables(infile, outfile, sequence_length):
     df = polars.read_csv(infile, has_header=True, separator=" ")
     pb = msprime.PedigreeBuilder()
     for i in range(len(df)):
-        row = df.filter(polars.col("id") == i)
-        assert row.shape[0] > 0
+        row = df.filter(polars.col("id") == i + 1)
+        assert row.shape[0] > 0, f"{i}"
         dadid = row.select("dadid").to_series()
         momid = row.select("momid").to_series()
         time = row.select("time").to_series()
@@ -135,7 +135,7 @@ def dataframe_to_tables(infile, outfile, sequence_length):
             assert momid[0] == "NA"
             parents = None
         else:
-            parents = [int(dadid[0]), int(momid[0])]
+            parents = [int(dadid[0]) - 1, int(momid[0]) - 1]
         output_id = pb.add_individual(time=time[0], parents=parents)
         assert output_id == i
     tc = pb.finalise(sequence_length)
