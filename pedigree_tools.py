@@ -389,10 +389,10 @@ def records_to_dataframe(records: list[PedigreeRecord]) -> str:
         for p in r.parents:
             if p is not None:
                 if records[p].sex == 1:
-                    dadid = p
+                    dadid = p + 1
                 if records[p].sex == 2:
-                    momid = p
-        rv += f"{r.id} {momid} {dadid} {r.sex} {r.time}\n"
+                    momid = p + 1
+        rv += f"{r.id + 1} {momid} {dadid} {r.sex} {r.time}\n"
     return rv
 
 
