@@ -16,7 +16,7 @@ asttokens==3.0.0
     # via stack-data
 async-lru==2.0.4
     # via jupyterlab
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   demes
     #   jsonschema
@@ -27,7 +27,7 @@ beautifulsoup4==4.12.3
     # via nbconvert
 bleach==6.2.0
     # via nbconvert
-certifi==2024.8.30
+certifi==2024.12.14
     # via
     #   httpcore
     #   httpx
@@ -128,7 +128,7 @@ jupyter-core==5.7.2
     #   nbconvert
     #   nbformat
     #   notebook
-jupyter-events==0.10.0
+jupyter-events==0.11.0
     # via jupyter-server
 jupyter-highlight-selected-word==0.2.0
     # via jupyter-contrib-nbextensions
@@ -219,6 +219,8 @@ pexpect==4.9.0
     # via ipython
 platformdirs==4.3.6
     # via jupyter-core
+polars==1.17.1
+    # via -r requirements.txt
 prometheus-client==0.21.1
     # via
     #   jupyter-server
@@ -243,7 +245,7 @@ python-dateutil==2.9.0.post0
     # via
     #   arrow
     #   jupyter-client
-python-json-logger==3.2.0
+python-json-logger==3.2.1
     # via jupyter-events
 pyyaml==6.0.2
     # via

@@ -1,0 +1,5 @@
+id dadid momid sex time
+0 NA NA 0 1
+1 NA NA 1 1
+2 0 1 1 0
+3 0 1 0 0

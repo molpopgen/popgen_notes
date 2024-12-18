@@ -5,6 +5,7 @@ import typing
 import click
 import msprime
 import numpy as np
+import polars
 import tskit
 
 
@@ -107,6 +108,114 @@ def treeseq(input, recombination, outfile, seed):
     ts.dump(outfile)
 
 
+@click.command(help="Convert pedigree records into a text file.")
+@click.option(
+    "--infile",
+    "-i",
+)
+@click.option(
+    "--outfile",
+    "-o",
+)
+@click.option("--sequence_length", "-l", type=int, help="Length of the genome (bp).")
+def dataframe_to_tables(infile, outfile, sequence_length):
+    df = polars.read_csv(infile, has_header=True, separator=" ")
+    pb = msprime.PedigreeBuilder()
+    for i in range(len(df)):
+        row = df.filter(polars.col("id") == i)
+        assert row.shape[0] > 0
+        dadid = row.select("dadid").to_series()
+        momid = row.select("momid").to_series()
+        time = row.select("time").to_series()
+        if dadid[0] == "NA":
+            assert momid[0] == "NA"
+            parents = None
+        else:
+            parents = [int(dadid[0]), int(momid[0])]
+        output_id = pb.add_individual(time=time[0], parents=parents)
+        assert output_id == i
+    tc = pb.finalise(sequence_length)
+    tc.dump(outfile)
+
+
+def generate_node_map(ts, idmap) -> typing.Optional[dict]:
+    if idmap is not None:
+        revidmap = [tskit.NULL for _ in idmap]
+        for i, j in enumerate(idmap):
+            if j != tskit.NULL:
+                revidmap[j] = i
+        node_labels = {}
+        for i, n in enumerate(ts.nodes()):
+            node_labels[i] = f"{n.individual}: {revidmap[i]}"
+        return node_labels
+
+    node_labels = {}
+    for i, n in enumerate(ts.nodes()):
+        node_labels[i] = f"{n.individual}: {i}"
+    return node_labels
+
+
+def generate_svg(
+    ts: tskit.TreeSequence,
+    outfile: str,
+    idmap: typing.Optional[np.array] = None,
+    height: typing.Optional[int] = None,
+    width: typing.Optional[int] = None,
+    x_axis: typing.Optional[int] = None,
+) -> None:
+    if height is None:
+        svg_height = 400
+    else:
+        svg_height = height
+    if width is None:
+        svg_width = 400
+    else:
+        svg_width = width
+    node_labels = generate_node_map(ts, idmap)
+    node_label_style = (
+        ".node > .lab {font-size: 80%}"
+        # NOTE: the syntax below is not compatible with FOSS tools like Inkscape,
+        # resulting in PDF output that ignores the stylings.
+        # (Apparently is is standard to just ignore invalid CSS.)
+        # ".leaf > .lab {text-anchor: start; transform: rotate(45deg) translate(6px)}"
+    )
+    if x_axis is None:
+        x_axis = False
+    else:
+        x_axis = x_axis
+    ts.draw_svg(
+        outfile,
+        size=(svg_width, svg_height),
+        node_labels=node_labels,
+        style=node_label_style,
+        x_axis=x_axis,
+        y_axis=True,
+    )
+
+
+@click.command(help="Make SVG output from a trees file")
+@click.option("--infile", "-i", type=str)
+@click.option("--outfile", "-o", type=str)
+@click.option(
+    "--simplify",
+    "-s",
+    is_flag=True,
+    default=False,
+    help="Make SVG from simplified tables.",
+)
+@click.option("--height", type=int, default=None)
+@click.option("--width", type=int, default=None)
+def svg(infile, outfile, simplify, height, width):
+    ts = tskit.load(infile)
+    if simplify:
+        tables = ts.tables
+        idmap = tables.simplify(filter_individuals=False)
+        ts = tables.tree_sequence()
+    else:
+        idmap = None
+    generate_svg(ts, outfile, idmap, height, width)
+
+
 @click.group()
 def do_work():
     pass
@@ -117,6 +226,8 @@ def main():
     do_work.add_command(tables)
     do_work.add_command(dataframe)
     do_work.add_command(treeseq)
+    do_work.add_command(dataframe_to_tables)
+    do_work.add_command(svg)
     do_work()
 
 
@@ -267,7 +378,7 @@ def records_to_pedigree(
 
 
 def records_to_dataframe(records: list[PedigreeRecord]) -> str:
-    rv = "id momid dadid sex\n"
+    rv = "id momid dadid sex time\n"
     for r in records:
         momid = "NA"
         dadid = "NA"
@@ -277,7 +388,7 @@ def records_to_dataframe(records: list[PedigreeRecord]) -> str:
                     dadid = p
                 if records[p].sex == 1:
                     momid = p
-        rv += f"{r.id} {momid} {dadid} {r.sex}\n"
+        rv += f"{r.id} {momid} {dadid} {r.sex} {r.time}\n"
     return rv
 
 

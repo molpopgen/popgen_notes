@@ -4,3 +4,4 @@ tskit
 jupyterlab
 jupyter-contrib-nbextensions
 notebook < 7
+polars
