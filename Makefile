@@ -1,4 +1,5 @@
-FINAL:=tree_thinking.pdf tree_thinking.html
+FINAL:=concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf \
+       concepts_in_population_genetics/_build/html/index.html
 FIGS:=figures/human_chimp_gorilla.svg \
       figures/human_chimp_gorilla_colored_edges.svg \
       figures/human_chimp_gorilla_with_mutations.svg \
@@ -34,11 +35,11 @@ DATA:=figures/python/trio_tables.tables \
 
 all: $(FINAL) $(FIGS) $(DATA)
 
-tree_thinking.html: tree_thinking.ipynb $(FIGS) $(DATA)
-	jupyter nbconvert --execute --no-input --to html tree_thinking.ipynb
+concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf: $(FIGS) $(DATA)
+	jupyter book build --builder pdflatex concepts_in_population_genetics
 
-tree_thinking.pdf: tree_thinking.ipynb $(FIGS) $(DATA)
-	jupyter nbconvert --execute --no-input --to pdf tree_thinking.ipynb
+concepts_in_population_genetics/_build/html/index.html: $(FIGS) $(DATA)
+	jupyter book build concepts_in_population_genetics
 
 figures/human_chimp_gorilla.svg: figures/python/human_chimp_gorilla.py
 	python $<
@@ -135,3 +136,4 @@ figures/simulated_pedigree_2_simplified.svg: pedigree_tools.py figures/simulated
 
 clean:
 	rm -f $(FINAL) $(FIGS) $(DATA)
+	rm -rf concepts_in_population_genetics/_build
