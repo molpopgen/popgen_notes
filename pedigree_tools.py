@@ -16,6 +16,10 @@ class PedigreeRecord:
     time: int
     sex: typing.Optional[int]
 
+    def __post_init__(self):
+        if self.sex is not None:
+            assert self.sex == 1 or self.sex == 2
+
 
 @click.command(
     help="""
@@ -261,8 +265,8 @@ def strict_monogamy(
         for i in range(len(current_parents) // 2):
             s = shuffled_parents[2 * i : 2 * i + 2]
             assert len(s) == 2
-            rv[min(s)].sex = 0
-            rv[max(s)].sex = 1
+            rv[min(s)].sex = 1
+            rv[max(s)].sex = 2
         p = 1.0 / float(len(current_parents) // 2)
         num_offspring = np.random.multinomial(
             num_individuals, pvals=[p] * (len(current_parents) // 2), size=1
@@ -288,7 +292,7 @@ def strict_monogamy(
 
     # randomise sex ratio of final generation
     for i in current_parents:
-        rv[i].sex = int(np.random.choice([0, 1], 1)[0])
+        rv[i].sex = int(np.random.choice([1, 2], 1)[0])
 
     return rv
 
@@ -307,7 +311,7 @@ def strict_monogamy_random_sex_ratio(
         rng_seed = seed
     np.random.seed(rng_seed)
     current_parents = []
-    sex = [0, 1]
+    sex = [1, 2]
     for i in range(num_individuals):
         current_parents.append(i)
         rv.append(
@@ -384,9 +388,9 @@ def records_to_dataframe(records: list[PedigreeRecord]) -> str:
         dadid = "NA"
         for p in r.parents:
             if p is not None:
-                if records[p].sex == 0:
-                    dadid = p
                 if records[p].sex == 1:
+                    dadid = p
+                if records[p].sex == 2:
                     momid = p
         rv += f"{r.id} {momid} {dadid} {r.sex} {r.time}\n"
     return rv
