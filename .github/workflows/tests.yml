@@ -47,3 +47,8 @@ jobs:
         run: |
           source .venv/bin/activate
           make
+
+      - name: Validate links
+        run: |
+          source .venv/bin/activate
+          jupyter book build -W --builder linkcheck concepts_in_population_genetics

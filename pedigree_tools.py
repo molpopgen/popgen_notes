@@ -16,6 +16,10 @@ class PedigreeRecord:
     time: int
     sex: typing.Optional[int]
 
+    def __post_init__(self):
+        if self.sex is not None:
+            assert self.sex == 1 or self.sex == 2
+
 
 @click.command(
     help="""
@@ -122,8 +126,8 @@ def dataframe_to_tables(infile, outfile, sequence_length):
     df = polars.read_csv(infile, has_header=True, separator=" ")
     pb = msprime.PedigreeBuilder()
     for i in range(len(df)):
-        row = df.filter(polars.col("id") == i)
-        assert row.shape[0] > 0
+        row = df.filter(polars.col("id") == i + 1)
+        assert row.shape[0] > 0, f"{i}"
         dadid = row.select("dadid").to_series()
         momid = row.select("momid").to_series()
         time = row.select("time").to_series()
@@ -131,7 +135,7 @@ def dataframe_to_tables(infile, outfile, sequence_length):
             assert momid[0] == "NA"
             parents = None
         else:
-            parents = [int(dadid[0]), int(momid[0])]
+            parents = [int(dadid[0]) - 1, int(momid[0]) - 1]
         output_id = pb.add_individual(time=time[0], parents=parents)
         assert output_id == i
     tc = pb.finalise(sequence_length)
@@ -146,12 +150,12 @@ def generate_node_map(ts, idmap) -> typing.Optional[dict]:
                 revidmap[j] = i
         node_labels = {}
         for i, n in enumerate(ts.nodes()):
-            node_labels[i] = f"{n.individual}: {revidmap[i]}"
+            node_labels[i] = f"{n.individual + 1}: {revidmap[i] + 1}"
         return node_labels
 
     node_labels = {}
     for i, n in enumerate(ts.nodes()):
-        node_labels[i] = f"{n.individual}: {i}"
+        node_labels[i] = f"{n.individual + 1}: {i + 1}"
     return node_labels
 
 
@@ -261,8 +265,8 @@ def strict_monogamy(
         for i in range(len(current_parents) // 2):
             s = shuffled_parents[2 * i : 2 * i + 2]
             assert len(s) == 2
-            rv[min(s)].sex = 0
-            rv[max(s)].sex = 1
+            rv[min(s)].sex = 1
+            rv[max(s)].sex = 2
         p = 1.0 / float(len(current_parents) // 2)
         num_offspring = np.random.multinomial(
             num_individuals, pvals=[p] * (len(current_parents) // 2), size=1
@@ -288,7 +292,7 @@ def strict_monogamy(
 
     # randomise sex ratio of final generation
     for i in current_parents:
-        rv[i].sex = int(np.random.choice([0, 1], 1)[0])
+        rv[i].sex = int(np.random.choice([1, 2], 1)[0])
 
     return rv
 
@@ -307,7 +311,7 @@ def strict_monogamy_random_sex_ratio(
         rng_seed = seed
     np.random.seed(rng_seed)
     current_parents = []
-    sex = [0, 1]
+    sex = [1, 2]
     for i in range(num_individuals):
         current_parents.append(i)
         rv.append(
@@ -384,11 +388,11 @@ def records_to_dataframe(records: list[PedigreeRecord]) -> str:
         dadid = "NA"
         for p in r.parents:
             if p is not None:
-                if records[p].sex == 0:
-                    dadid = p
                 if records[p].sex == 1:
-                    momid = p
-        rv += f"{r.id} {momid} {dadid} {r.sex} {r.time}\n"
+                    dadid = p + 1
+                if records[p].sex == 2:
+                    momid = p + 1
+        rv += f"{r.id + 1} {momid} {dadid} {r.sex} {r.time}\n"
     return rv
 
 

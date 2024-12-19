@@ -3,5 +3,12 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: evolutionary_graphs
+parts:
+- caption: Graphs in evolutionary biology
+  numbered: true
+  chapters:
+  - file: evolutionary_graphs
+- caption: Appendix
+  numbered: true
+  chapters:
+  - file: gene_dropping_explained
