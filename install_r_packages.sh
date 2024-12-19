@@ -1,4 +1,4 @@
-packages=(kinship2)
+packages=(kinship2, pedtools)
 
 for p in ${packages}
 do
