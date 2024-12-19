@@ -261,6 +261,7 @@ The tree in {numref}`multigen_pedigree_tree` shows several interesting features:
   An example of unary transmission starts with allele 11 in grandparent 6.
   It is passed to individual 10, becoming allele 20.
   It is then passed on to individual 14, becoming allele 28.
+* There are 4 distinct trees shown in this image!
 
 
 ```{figure} ../figures/multigen_pedigree.svg
@@ -269,6 +270,10 @@ The tree in {numref}`multigen_pedigree_tree` shows several interesting features:
 Genome inheritance on the pedigree from {numref}`multigen_pedigree`.
 ```
 
+We may also note that much of the information in {numref}`multigen_pedigree_tree` is not especially useful in understanding the ancestry of the alleles found in our present-day individuals (those born 0 generations ago).
+There are many unary nodes, including unary nodes ancestral to nodes associated with branching events. 
+{numref}`multigen_pedigree_tree_simplified` shows a "simplified" version of this image with unary transmission events removed and we stop at the most recent common ancestor of any set of nodes.
+This simplified tree is the *minimal* graph that we require to describe the *ancestral history* of the alleles in our present-day individuals.
 
 ```{figure} ../figures/multigen_pedigree_simplified.svg
 :name: multigen_pedigree_tree_simplified
