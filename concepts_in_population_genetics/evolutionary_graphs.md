@@ -317,6 +317,15 @@ Using the simulated outputs, we can make the same kinds of plots that we discuss
 
 ### A small example
 
+{numref}`simulated_pedigree_1` shows a pedigree with 4 founders and a total of 4 generations.
+You will notice some individuals connected by two horizontal lines instead of the usual one.
+Due to the small population size ($N$), close relatives may be paired as parents.
+We say that offspring of such pairings are the product of "consanguineous" matings, which is just another way of saying inbreeding.
+The two horizontal lines indicate parings that result in inbred offspring.
+
+{numref}`simulated_pedigree_1_trees` and {numref}`simulated_pedigree_1_simplified_trees` show the unsimplified and simplified patterns of allele transmission, respectively.
+These graphics should look very similar to those from {numref}`pedigrees_gene_trees`, showing rapid loss of both genealogical and genetic ancestors.
+
 ```{figure} ../figures/simulated_pedigree_1.png
 :name: simulated_pedigree_1
 
@@ -340,6 +349,10 @@ Sim
 
 ### A larger example
 
+{numref}`simulated_pedigree_2` shows a pedigree with 6 founders and 10 generations of random mating.
+The gene trees are in {numref}`simulated_pedigree_2_trees` and {numref}`simulated_pedigree_2_simplified_trees`.
+
+
 ```{figure} ../figures/simulated_pedigree_2.png
 :name: simulated_pedigree_2
 
@@ -353,6 +366,9 @@ Sime
 Sime
 
 ```
+
+As with the smaller example in the previous section, we see rapid loss of ancestry.
+However, we should note that, of the 10 generations of random mating, we the common ancestors of individual alleles are obtained by at most 4 generations into the past ({numref}`simulated_pedigree_2_simplified_trees`).
 
 
 ```{figure} ../figures/simulated_pedigree_2_simplified.svg
