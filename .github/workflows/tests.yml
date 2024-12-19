@@ -51,4 +51,4 @@ jobs:
       - name: Validate links
         run: |
           source .venv/bin/activate
-          jupyter book build --builder linkcheck concepts_in_population_genetics
+          jupyter book build -W --builder linkcheck concepts_in_population_genetics
