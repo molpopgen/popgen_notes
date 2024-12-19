@@ -232,10 +232,26 @@ One example of "gene dropping" onto the pedigree from {numref}`two_sibs`.
 Another example of "gene dropping" onto the pedigree from {numref}`two_sibs`.
 ```
 
-![](../figures/multigen_pedigree.png)
+The pedigree shown in {numref}`multigen_pedigree` shows multiple generations of a family, ending with two sets of cousins.
+Individuals 11 and 12 are first cousins (sharing grandparents) to individuals 13 and 14.
+
+```{figure} ../figures/multigen_pedigree.png
+:name: multigen_pedigree
+
+A multigeneration pedigree.
+```
+
+Starting with these sets of cousins, we can imagine starting to trace their genomes back in time until we reach the grand-parental generation. For example, for each genome of the two genomes in individual 11, the genome came either from individual 7 or from 8. If it came from 7, then we know that it came from one of the two grandparents labelled 1 or 2.  But if it came from 8, then the grandparent of that genome was either 3 or 4. Therefore, in order for our cousins to have inherited a genome from the same common ancestor, the pathways of inheritance for those genomes must trace back to the grandparent couple 3 and 4. Further, the genomes must come from the same grandparent and then they must come from the *same genome* from that shared grandparent. If all of this happens, then we say that the two genomes have "coalesced" into their common ancestor.
+
+{numref}`multigen_pedigree_tree` shows the result of "gene dropping" onto this pedigree.
+We see that all four cousins share a genome descended from genome 5 of grandparent 3.
 
 
-![](../figures/multigen_pedigree.svg)
+```{figure} ../figures/multigen_pedigree.svg
+:name: multigen_pedigree_tree
+
+Genome inheritance on the pedigree from {numref}`multigen_pedigree`.
+```
 
 
 ![](../figures/multigen_pedigree_simplified.svg)
