@@ -379,3 +379,17 @@ However, we should note that, of the 10 generations of random mating, we the com
 
 The simplified version of the gene trees from {numref}`simulated_pedigree_2_trees`.
 ```
+
+## Pedigrees and population genetics
+
+The previous sections on pedigrees and gene trees illustrate that there are two genealogical structures in natural populations.
+First, there is the pedigree, which is a graph representing the relationships among *individuals*.
+Second, there is a "gene tree" of the actual transmission of DNA across generations.
+
+The field of population genetics is mostly concerned with the second structure (the gene tree).
+While it is recognized that the structure of this gene tree depends on the structure of the true pedigree of the population, we rarely have detailed information about pedigrees.
+What we can obtain rather easily is genetic information from contemporary individuals.
+In some cases, we can also obtain genetic information from ancient individuals.
+For example, it is relatively common now to sequence "ancient DNA" from human remains.
+In some cases, the samples are over 1000 years old!
+We also now have draft genome sequences of individuals from extinct hominid species such as the Neanderthal. Much of modern population genetics involves making inferences about the evolutionary history of one or more populations using such genomic data.
