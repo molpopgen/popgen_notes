@@ -35,7 +35,7 @@ Further, because the graph is oriented with respect to *time in the past*, we ca
 2. The human/chimp/gorilla common ancestor existing 12 million years ago.
 3. Human and chimps are more closely related to each other than either one is to the gorilla.  We make this statement because:
     1. The human/chimp common ancestor occurred in the more recent past than the common ancestor or human/gorilla (which is the same node as the chimp/gorilla common ancestor.)
-    2. There for, there is more *time during which evolution (change) occurred* between human/gorilla (and also chimp/gorilla) than there is between human and chimp.
+    2. Therefore, there is more *time during which evolution (change) occurred* between human/gorilla (and also chimp/gorilla) than there is between human and chimp.
 
 To illustrate this final point in more detail, let us show the same tree with each branch given a different color:
 
@@ -249,6 +249,18 @@ Starting with these sets of cousins, we can imagine starting to trace their geno
 {numref}`multigen_pedigree_tree` shows the result of "gene dropping" onto this pedigree.
 We see that all four cousins share a genome descended from genome 5 of grandparent 3.
 
+The tree in {numref}`multigen_pedigree_tree` shows several interesting features:
+
+* Our pedigree ({numref}`multigen_pedigree`) contains six grandparents (two generations ago), yet only four of them (individuals 2, 3, 5, and 6) contributed alleles to the grandchildren.
+* For those grandparents that did contribute to the genomes of their grandchildren, all of them only passed on one of their two possible alleles.
+* Turning to the parental generation (1 generation ago), we see that all four parents contributed genes to the final generation, yet only individual 10 passed on a copy of each of their alleles.
+* There are multiple occasions where a single allele was passed on to more than one offspring.
+  For example, allele 5 was passed from individual 3 to individuals 8 and 9.
+  When an allele is transmitted to multiple descendant nodes, we get a branching pattern in our tree.
+  When an allele is transmitted to only a single descendant in the tree, we get straight lines, or "unary transmission" of the gene copy.
+  An example of unary transmission starts with allele 11 in grandparent 6.
+  It is passed to individual 10, becoming allele 20.
+  It is then passed on to individual 14, becoming allele 28.
 
 ```{figure} ../figures/multigen_pedigree.svg
 :name: multigen_pedigree_tree
