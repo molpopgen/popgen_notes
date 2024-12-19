@@ -284,6 +284,14 @@ This branching relationship is completely analogous to what we discussed for spe
 The tree(s) from {numref}`multigen_pedigree_tree` simplified to only show non-unary inheritance and to stop at the most recent common ancestor of each node.
 ```
 
+{numref}`multigen_pedigree_tree` and {numref}`multigen_pedigree_tree_simplified` also reveal something that may be surprising.
+These gene trees come from a small familial pedigree ({numref}`multigen_pedigree`).
+However, we noted above that only 3/4 of the grandparents have directly contributed DNA to the most recent generation.
+In other words, "direct" DNA connections to even recent ancestors are quickly lost.
+This loss is due to the randomness of the "Mendelian lottery".
+At an autosomal locus a given allele is only passed on to half of an individual's offspring.
+Further, humans tend to have few offspring.
+Few offspring implies few chances to pass on genes, meaning that there is a high likelihood that an individual does *not* pass both of their alleles on to the next generation.
 
 ## Pedigrees in randomly mating populations
 
