@@ -262,6 +262,7 @@ The tree in {numref}`multigen_pedigree_tree` shows several interesting features:
   It is passed to individual 10, becoming allele 20.
   It is then passed on to individual 14, becoming allele 28.
 
+
 ```{figure} ../figures/multigen_pedigree.svg
 :name: multigen_pedigree_tree
 
@@ -269,7 +270,12 @@ Genome inheritance on the pedigree from {numref}`multigen_pedigree`.
 ```
 
 
-![](../figures/multigen_pedigree_simplified.svg)
+```{figure} ../figures/multigen_pedigree_simplified.svg
+:name: multigen_pedigree_tree_simplified
+
+The tree(s) from {numref}`multigen_pedigree_tree` simplified to only show non-unary inheritance and to stop at the most recent common ancestor of each node.
+```
+
 
 ## Pedigrees in randomly mating populations
 
