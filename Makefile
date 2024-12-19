@@ -7,6 +7,8 @@ FIGS:=figures/human_chimp_gorilla.svg \
 	  figures/trio.png \
 	  figures/trio.svg \
 	  figures/two_sibs.png \
+	  figures/two_sibs_markers.png \
+	  figures/two_sibs_appendix.svg \
 	  figures/two_sibs.svg \
 	  figures/two_sibs_2.svg \
 	  figures/multigen_pedigree.png \
@@ -63,6 +65,12 @@ figures/trio.svg: pedigree_tools.py figures/python/trio.trees
 
 figures/two_sibs.png: figures/R/plot_simple_pedigree.R figures/R/two_sibs.txt
 	Rscript --vanilla figures/R/plot_simple_pedigree.R figures/R/two_sibs.txt $@
+
+figures/two_sibs_markers.png: figures/R/two_sibs_markers.R
+	Rscript --vanilla $<
+
+figures/two_sibs_appendix.svg: figures/python/two_sibs_appendix.py
+	python $<
 
 figures/two_sibs.svg: pedigree_tools.py figures/python/two_sibs.trees
 	python pedigree_tools.py svg -i figures/python/two_sibs.trees -o $@

@@ -7,3 +7,6 @@ parts:
 - caption: Graphs in evolutionary biology
   chapters:
   - file: evolutionary_graphs
+- caption: Appendix
+  chapters:
+  - file: gene_dropping_explained

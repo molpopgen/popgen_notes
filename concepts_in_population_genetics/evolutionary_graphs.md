@@ -139,6 +139,7 @@ We have to take care to recognize when different branches can have different der
 5. Branch lengths usually indicate "how much evolution" has occurred on the branch. The examples in this section are in units of time.
 6. We can trace changes on the trees from the past to the present.  These changes tell us the "state" of the tips. The examples here all trace changes in DNA sequence from the past to the present.
 
+(pedigrees_gene_trees)=
 ## Pedigrees and "gene trees"
 
 {numref}`trio` shows a simple pedigree called a "trio."
@@ -211,6 +212,8 @@ In {numref}`two_sibs_gene_dropping` , both offspring inherit the same two allele
 ```{attention} Take a moment to practice!
 It is probably a good idea to make sure that you really understand what these images are showing.
 Instead of skimming over the graphics, take some time to make sure that you understand how the `individual: genome` annotations in {numref}`two_sibs_gene_dropping` and {numref}`two_sibs_gene_dropping_2` map on to the pedigree in {numref}`two_sibs`.
+
+See {numref}`gene_dropping_appendix` if you need more help on how these images work.
 ```
 
 ```{figure} ../figures/two_sibs.png
