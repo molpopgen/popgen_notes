@@ -1,5 +1,6 @@
 # Evolutionary graphs
 
+(species_trees)=
 ## Species trees
 
 The following image shows the relationship of three species -- human, chimpanzee, and gorilla.
@@ -274,6 +275,8 @@ We may also note that much of the information in {numref}`multigen_pedigree_tree
 There are many unary nodes, including unary nodes ancestral to nodes associated with branching events. 
 {numref}`multigen_pedigree_tree_simplified` shows a "simplified" version of this image with unary transmission events removed and we stop at the most recent common ancestor of any set of nodes.
 This simplified tree is the *minimal* graph that we require to describe the *ancestral history* of the alleles in our present-day individuals.
+This simplified representation illustrates an important concept -- the important information in a gene tree is the *branching structure* that illustrates the relationship among our sample of alleles/genomes.
+This branching relationship is completely analogous to what we discussed for species trees in {numref}`species_trees`.
 
 ```{figure} ../figures/multigen_pedigree_simplified.svg
 :name: multigen_pedigree_tree_simplified
