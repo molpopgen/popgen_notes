@@ -293,22 +293,71 @@ At an autosomal locus a given allele is only passed on to half of an individual'
 Further, humans tend to have few offspring.
 Few offspring implies few chances to pass on genes, meaning that there is a high likelihood that an individual does *not* pass both of their alleles on to the next generation.
 
+(simulated_pedigrees_strict_monogamy)=
 ## Pedigrees in randomly mating populations
 
+The pedigrees and gene trees discussed in {numref}`pedigrees_gene_trees` were the standard familial pedigrees that we are used to from medical genetics.
 
-![](../figures/simulated_pedigree_1.png)
+In this section, we look at pedigrees that are the *random* outcome of an evolutionary model.
+We get the pedigrees by computer simulation.
+
+In words the details of the model are:
+
+* There are $N$ diploid founder individuals.
+* For all but the final generation, exactly $N/2$ individuals are female and the remaining $N/2$ are male.
+* $N$ does not change each generation.
+* To generate the next generation:
+    * Randomly pair each female with exactly one male, forming monogamous pairings.
+    * Each pair has the same average fecundity (number of offspring).
+    * We keep sampling pairs at random and recording births until we have made $N$ offspring.
+    * We track the parents of each offspring each generation
+* For the final generation, we randomly assign male/female status.
+
+Using the simulated outputs, we can make the same kinds of plots that we discussed in {numref}`pedigrees_gene_trees`
+
+### A small example
+
+```{figure} ../figures/simulated_pedigree_1.png
+:name: simulated_pedigree_1
+
+Sim
+```
 
 
-![](../figures/simulated_pedigree_1.svg)
+```{figure} ../figures/simulated_pedigree_1.svg
+:name: simulated_pedigree_1_trees
+
+Sim
+
+```
 
 
-![](../figures/simulated_pedigree_1_simplified.svg)
+```{figure} ../figures/simulated_pedigree_1_simplified.svg
+:name: simulated_pedigree_1_simplified_trees
+
+Sim
+```
+
+### A larger example
+
+```{figure} ../figures/simulated_pedigree_2.png
+:name: simulated_pedigree_2
+
+Sime
+```
 
 
-![](../figures/simulated_pedigree_2.png)
+```{figure} ../figures/simulated_pedigree_2.svg
+:name: simulated_pedigree_2_trees
+
+Sime
+
+```
 
 
-![](../figures/simulated_pedigree_2.svg)
+```{figure} ../figures/simulated_pedigree_2_simplified.svg
+:name: simulated_pedigree_2_simplified_trees
 
+Sime
 
-![](../figures/simulated_pedigree_2_simplified.svg)
+```
