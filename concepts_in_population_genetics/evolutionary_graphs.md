@@ -329,22 +329,23 @@ These graphics should look very similar to those from {numref}`pedigrees_gene_tr
 ```{figure} ../figures/simulated_pedigree_1.png
 :name: simulated_pedigree_1
 
-Sim
+A random pedigree starting with 4 founders and then evolving for 3 more generations of random mating.
+The double horizontal lines indicate parents that are close relatives.
+Their offspring are therefore inbred.
 ```
 
 
 ```{figure} ../figures/simulated_pedigree_1.svg
 :name: simulated_pedigree_1_trees
 
-Sim
-
+An unsimplified gene tree from the pedigree in {numref}`simulated_pedigree_1`.
 ```
 
 
 ```{figure} ../figures/simulated_pedigree_1_simplified.svg
 :name: simulated_pedigree_1_simplified_trees
 
-Sim
+The simplified version of the gene trees from {numref}`simulated_pedigree_1_trees`.
 ```
 
 ### A larger example
@@ -356,15 +357,17 @@ The gene trees are in {numref}`simulated_pedigree_2_trees` and {numref}`simulate
 ```{figure} ../figures/simulated_pedigree_2.png
 :name: simulated_pedigree_2
 
-Sime
+A random pedigree starting with 6 founders and then evolving for 9 more generations of random mating.
+The double horizontal lines indicate parents that are close relatives.
+The arcs connect an individual from where it occurs in a sibship (the set of offspring of a given pair of parents) to where that same individual is a parent.
+The arcs are necessary due to the density of individuals in the pedigree.
 ```
 
 
 ```{figure} ../figures/simulated_pedigree_2.svg
 :name: simulated_pedigree_2_trees
 
-Sime
-
+An unsimplified gene tree from the pedigree in {numref}`simulated_pedigree_2`.
 ```
 
 As with the smaller example in the previous section, we see rapid loss of ancestry.
@@ -374,6 +377,5 @@ However, we should note that, of the 10 generations of random mating, we the com
 ```{figure} ../figures/simulated_pedigree_2_simplified.svg
 :name: simulated_pedigree_2_simplified_trees
 
-Sime
-
+The simplified version of the gene trees from {numref}`simulated_pedigree_2_trees`.
 ```
