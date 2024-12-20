@@ -37,13 +37,15 @@ DATA:=figures/python/trio_tables.tables \
 	  figures/simulated_pedigree_2.trees \
 	  figures/R/simulated_pedigree_2.txt
 
+BOOKMDFILES:=$(shell find concepts_in_population_genetics/ -type f -name '*.md')
+
 all: $(FINAL) $(FIGS) $(DATA)
 
-concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf: $(FIGS) $(DATA)
-	jupyter book build --builder pdflatex concepts_in_population_genetics
+concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf: $(FIGS) $(DATA) $(BOOKMDFILES)
+	make -C concepts_in_population_genetics pdf
 
-concepts_in_population_genetics/_build/html/index.html: $(FIGS) $(DATA)
-	jupyter book build concepts_in_population_genetics
+concepts_in_population_genetics/_build/html/index.html: $(FIGS) $(DATA) $(BOOKMDFILES)
+	make -C concepts_in_population_genetics pdf
 
 figures/human_chimp_gorilla.svg: figures/python/human_chimp_gorilla.py
 	python $<
@@ -152,4 +154,4 @@ figures/simulated_pedigree_2_simplified.svg: pedigree_tools.py figures/simulated
 
 clean:
 	rm -f $(FINAL) $(FIGS) $(DATA)
-	rm -rf concepts_in_population_genetics/_build
+	make clean -C concepts_in_population_genetics/
