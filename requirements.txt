@@ -3,3 +3,5 @@ msprime
 tskit
 jupyter-book
 polars
+demes
+demesdraw
