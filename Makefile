@@ -1,3 +1,7 @@
+# NOTE
+# This Makefile uses ImageMagick commands that are deprecated in version 7.
+# We do this intentionally because the GitHub action runner is using 
+# Ubuntu 24.04 which runs version 6.
 FINAL:=concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf \
        concepts_in_population_genetics/_build/html/index.html
 FIGS:=figures/human_chimp_gorilla.svg \
@@ -19,6 +23,7 @@ FIGS:=figures/human_chimp_gorilla.svg \
 	  figures/simulated_pedigree_1_simplified.svg \
 	  figures/simulated_pedigree_2.png \
 	  figures/simulated_pedigree_2.svg \
+	  figures/simulated_pedigree_2_mutations_combined.png \
 	  figures/simulated_pedigree_2_simplified.svg 
 	
 DATA:=figures/python/trio_tables.tables \
@@ -45,7 +50,7 @@ concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf
 	make -C concepts_in_population_genetics pdf
 
 concepts_in_population_genetics/_build/html/index.html: $(FIGS) $(DATA) $(BOOKMDFILES)
-	make -C concepts_in_population_genetics pdf
+	make -C concepts_in_population_genetics html
 
 figures/human_chimp_gorilla.svg: figures/python/human_chimp_gorilla.py
 	python $<
@@ -79,6 +84,7 @@ figures/two_sibs.svg: pedigree_tools.py figures/python/two_sibs.trees
 
 figures/two_sibs_2.svg: pedigree_tools.py figures/python/two_sibs.trees2
 	python pedigree_tools.py svg -i figures/python/two_sibs.trees2 -o $@
+
 
 figures/multigen_pedigree.png: figures/R/plot_simple_pedigree.R figures/R/multigen_pedigree.txt
 	Rscript --vanilla figures/R/plot_simple_pedigree.R figures/R/multigen_pedigree.txt $@
@@ -149,9 +155,22 @@ figures/simulated_pedigree_2.png: figures/R/plot_simple_pedigree.R figures/R/sim
 figures/simulated_pedigree_2.svg: pedigree_tools.py figures/simulated_pedigree_2.trees
 	python pedigree_tools.py svg -i figures/simulated_pedigree_2.trees -o $@ --width 1000
 
+figures/simulated_pedigree_2_with_mutations.svg: figures/python/mutations_from_simulated_pedigree_2.py  figures/simulated_pedigree_2.trees
+	python $< 
+
+figures/simulated_pedigree_2_with_mutations_subtree0.svg: figures/python/mutations_from_simulated_pedigree_2.py figures/simulated_pedigree_2.trees
+	python $<
+
+figures/simulated_pedigree_2_with_mutations_subtree1.svg: figures/python/mutations_from_simulated_pedigree_2.py figures/simulated_pedigree_2.trees
+	python $<
+
+figures/simulated_pedigree_2_mutations_combined.png: figures/simulated_pedigree_2_with_mutations.svg  figures/simulated_pedigree_2_with_mutations_subtree0.svg figures/simulated_pedigree_2_with_mutations_subtree1.svg
+	convert -append figures/simulated_pedigree_2_with_mutations.svg  figures/simulated_pedigree_2_with_mutations_subtree0.svg figures/simulated_pedigree_2_with_mutations_subtree1.svg $@
+
 figures/simulated_pedigree_2_simplified.svg: pedigree_tools.py figures/simulated_pedigree_2.trees
 	python pedigree_tools.py svg -i figures/simulated_pedigree_2.trees -o $@ --width 1000 --simplify
 
 clean:
 	rm -f $(FINAL) $(FIGS) $(DATA)
+	rm -f figures/*.png figures/*.svg
 	make clean -C concepts_in_population_genetics/

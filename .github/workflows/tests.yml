@@ -22,7 +22,7 @@ jobs:
       - name: Install apt packages
         run: |
           sudo apt install --fix-missing pandoc inkscape texlive texlive-xetex texlive-fonts-extra \
-            r-base latexmk
+            r-base latexmk imagemagick
 
       - name: Install R dependencies
         run: |
