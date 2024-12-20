@@ -19,51 +19,62 @@ import demesdraw
 ```
 
 ```{code-cell} python
----
-mystnb:
-  image:
-    classes: shadow bg-primary
-  figure:
-    caption: |
-      A single deme with constant population size
-      continuing "infinitely" into the past.
-    name: single_deme_constant_size
-  tags: 
-    remove-input
----
-single_deme = """
-time_units: generations
+:tags: ["remove-input"]
+yaml = """
+description: The Jouganous et al (2017) demographic model for YRI, CEU, and
+  CHB. Parameters are given in Table 2.
+time_units: years
+generation_time: 29
+doi:
+  - https://doi.org/10.1534/genetics.117.200493
 demes:
- - name: a_deme
-   epochs:
-    - start_size: 1000
+  - name: ancestral
+    description: Equilibrium/root population
+    epochs:
+    - end_time: 312e3
+      start_size: 11273
+  - name: AMH
+    description: Anatomically modern humans
+    ancestors: [ancestral]
+    epochs:
+    - end_time: 125e3
+      start_size: 23721
+  - name: OOA
+    description: Bottleneck out-of-Africa population
+    ancestors: [AMH]
+    epochs:
+    - end_time: 42.3e3
+      start_size: 3104
+  - name: YRI
+    description: Yoruba in Ibadan, Nigeria
+    ancestors: [AMH]
+    epochs:
+    - start_size: 23721
+      end_time: 0
+  - name: CEU
+    description: Utah Residents (CEPH) with Northern and Western European Ancestry
+    ancestors: [OOA]
+    epochs:
+    - start_size: 2271
+      end_size: 39611
+      end_time: 0
+  - name: CHB
+    description: Han Chinese in Beijing, China
+    ancestors: [OOA]
+    epochs:
+    - start_size: 924
+      end_size: 83772
+      end_time: 0
+migrations:
+  - demes: [YRI, OOA]
+    rate: 15.8e-5
+  - demes: [YRI, CEU]
+    rate: 1.10e-5
+  - demes: [YRI, CHB]
+    rate: 0.48e-5
+  - demes: [CEU, CHB]
+    rate: 4.19e-5
 """
-graph = demes.loads(single_deme)
+graph = demes.loads(yaml)
 demesdraw.tubes(graph);
 ```
-
-```{code-cell} python
----
-mystnb:
-  image:
-    classes: shadow bg-primary
-  figure:
-    caption: |
-      A single deme with recent exponential growth
-      starting 100 generations ago.
-    name: single_deme_growth
----
-single_deme = """
-time_units: generations
-demes:
- - name: a_deme_with_size_changes
-   epochs:
-    - start_size: 1000
-      end_time: 100
-    - end_size: 5000
-"""
-graph = demes.loads(single_deme)
-demesdraw.tubes(graph);
-```
-
-```{figure} demesdraw.tubes(graph)```
