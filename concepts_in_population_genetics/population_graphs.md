@@ -96,6 +96,7 @@ For example, the thick green arrow from `OOA` to `CEU` means that the latter pop
 The thinner arrows refer to continuous migration between populations. 
 The color of the arrow tip refers to the *source* of migration and the arrow points at the *destination*.
 The population labels are defined in {numref}`jouganous-model-labels`.
+This image is plotted using parameters inferred from human genotype data by {cite:t}`Jouganous2017-tg`.
 ```
 
 ```{list-table} Population labels

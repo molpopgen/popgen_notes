@@ -13,3 +13,4 @@ parts:
   numbered: true
   chapters:
   - file: gene_dropping_explained
+  - file: bibliography
