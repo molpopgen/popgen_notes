@@ -16,10 +16,13 @@ kernelspec:
 :tags: ["remove-input"]
 import demes
 import demesdraw
+import matplotlib.pyplot as plt
+
+from myst_nb import glue
 ```
 
 ```{code-cell} python
-:tags: ["remove-input"]
+:tags: ["remove-input", "remove-output"]
 yaml = """
 description: The Jouganous et al (2017) demographic model for YRI, CEU, and
   CHB. Parameters are given in Table 2.
@@ -75,6 +78,38 @@ migrations:
   - demes: [CEU, CHB]
     rate: 4.19e-5
 """
+fig, ax = plt.subplots()
 graph = demes.loads(yaml)
-demesdraw.tubes(graph);
+demesdraw.tubes(graph, ax=ax);
+glue("jouganous-model", fig)
+```
+
+```{glue:figure} jouganous-model
+:figwidth: 300px
+:name: "jouganous-model-fig"
+
+A graphical model of relationships between multiple human populations.
+From bottom to top, time moves to the past.
+Each population gets a different color and the width is proportional to the population size at a given time in the past.
+Thick arrows represent founding events.
+For example, the thick green arrow from `OOA` to `CEU` means that the latter population arose from the former.
+The thinner arrows refer to continuous migration between populations. 
+The color of the arrow tip refers to the *source* of migration and the arrow points at the *destination*.
+The population labels are defined in {numref}`jouganous-model-labels`.
+```
+
+```{list-table} Population labels
+:header-rows: 1
+:name: jouganous-model-labels
+
+* - AMH
+  - Anatomically modern humans
+* - OOA
+  - Out of Africa population
+* - YRI
+  - Yoruba in Ibadan, Nigera
+* - CEU
+  - Utah Residents (CEPH) with Norther and Western European ancestry
+* - CHB
+  - Han Chinese in Beijing, China
 ```
