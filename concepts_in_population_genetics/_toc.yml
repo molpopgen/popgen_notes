@@ -8,7 +8,9 @@ parts:
   numbered: true
   chapters:
   - file: evolutionary_graphs
+  - file: population_graphs
 - caption: Appendix
   numbered: true
   chapters:
   - file: gene_dropping_explained
+  - file: bibliography
