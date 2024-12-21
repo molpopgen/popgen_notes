@@ -1,56 +1,70 @@
----
----
-
-@inproceedings{holdgraf_evidence_2014,
-	address = {Brisbane, Australia, Australia},
-	title = {Evidence for {Predictive} {Coding} in {Human} {Auditory} {Cortex}},
-	booktitle = {International {Conference} on {Cognitive} {Neuroscience}},
-	publisher = {Frontiers in Neuroscience},
-	author = {Holdgraf, Christopher Ramsay and de Heer, Wendy and Pasley, Brian N. and Knight, Robert T.},
-	year = {2014}
+@ARTICLE{Gower2022-xx,
+  title    = "Demes: a standard format for demographic models",
+  author   = "Gower, Graham and Ragsdale, Aaron P and Bisschop, Gertjan and
+              Gutenkunst, Ryan N and Hartfield, Matthew and Noskova, Ekaterina
+              and Schiffels, Stephan and Struck, Travis J and Kelleher, Jerome
+              and Thornton, Kevin R",
+  journal  = "Genetics",
+  volume   =  222,
+  number   =  3,
+  abstract = "Understanding the demographic history of populations is a key goal
+              in population genetics, and with improving methods and data, ever
+              more complex models are being proposed and tested. Demographic
+              models of current interest typically consist of a set of discrete
+              populations, their sizes and growth rates, and continuous and
+              pulse migrations between those populations over a number of
+              epochs, which can require dozens of parameters to fully describe.
+              There is currently no standard format to define such models,
+              significantly hampering progress in the field. In particular, the
+              important task of translating the model descriptions in published
+              work into input suitable for population genetic simulators is
+              labor intensive and error prone. We propose the Demes data model
+              and file format, built on widely used technologies, to alleviate
+              these issues. Demes provide a well-defined and unambiguous model
+              of populations and their properties that is straightforward to
+              implement in software, and a text file format that is designed for
+              simplicity and clarity. We provide thoroughly tested
+              implementations of Demes parsers in multiple languages including
+              Python and C, and showcase initial support in several simulators
+              and inference methods. An introduction to the file format and a
+              detailed specification are available at
+              https://popsim-consortium.github.io/demes-spec-docs/.",
+  month    =  nov,
+  year     =  2022,
+  keywords = "demographic models; inference; simulation",
+  language = "en"
 }
 
-@article{holdgraf_rapid_2016,
-	title = {Rapid tuning shifts in human auditory cortex enhance speech intelligibility},
-	volume = {7},
-	issn = {2041-1723},
-	url = {http://www.nature.com/doifinder/10.1038/ncomms13654},
-	doi = {10.1038/ncomms13654},
-	number = {May},
-	journal = {Nature Communications},
-	author = {Holdgraf, Christopher Ramsay and de Heer, Wendy and Pasley, Brian N. and Rieger, Jochem W. and Crone, Nathan and Lin, Jack J. and Knight, Robert T. and Theunissen, Frédéric E.},
-	year = {2016},
-	pages = {13654},
-	file = {Holdgraf et al. - 2016 - Rapid tuning shifts in human auditory cortex enhance speech intelligibility.pdf:C\:\\Users\\chold\\Zotero\\storage\\MDQP3JWE\\Holdgraf et al. - 2016 - Rapid tuning shifts in human auditory cortex enhance speech intelligibility.pdf:application/pdf}
-}
-
-@inproceedings{holdgraf_portable_2017,
-	title = {Portable learning environments for hands-on computational instruction using container-and cloud-based technology to teach data science},
-	volume = {Part F1287},
-	isbn = {978-1-4503-5272-7},
-	doi = {10.1145/3093338.3093370},
-	abstract = {© 2017 ACM. There is an increasing interest in learning outside of the traditional classroom setting. This is especially true for topics covering computational tools and data science, as both are challenging to incorporate in the standard curriculum. These atypical learning environments offer new opportunities for teaching, particularly when it comes to combining conceptual knowledge with hands-on experience/expertise with methods and skills. Advances in cloud computing and containerized environments provide an attractive opportunity to improve the effciency and ease with which students can learn. This manuscript details recent advances towards using commonly-Available cloud computing services and advanced cyberinfrastructure support for improving the learning experience in bootcamp-style events. We cover the benets (and challenges) of using a server hosted remotely instead of relying on student laptops, discuss the technology that was used in order to make this possible, and give suggestions for how others could implement and improve upon this model for pedagogy and reproducibility.},
-	booktitle = {{ACM} {International} {Conference} {Proceeding} {Series}},
-	author = {Holdgraf, Christopher Ramsay and Culich, A. and Rokem, A. and Deniz, F. and Alegro, M. and Ushizima, D.},
-	year = {2017},
-	keywords = {Teaching, Bootcamps, Cloud computing, Data science, Docker, Pedagogy}
-}
-
-@article{holdgraf_encoding_2017,
-	title = {Encoding and decoding models in cognitive electrophysiology},
-	volume = {11},
-	issn = {16625137},
-	doi = {10.3389/fnsys.2017.00061},
-	abstract = {© 2017 Holdgraf, Rieger, Micheli, Martin, Knight and Theunissen. Cognitive neuroscience has seen rapid growth in the size and complexity of data recorded from the human brain as well as in the computational tools available to analyze this data. This data explosion has resulted in an increased use of multivariate, model-based methods for asking neuroscience questions, allowing scientists to investigate multiple hypotheses with a single dataset, to use complex, time-varying stimuli, and to study the human brain under more naturalistic conditions. These tools come in the form of “Encoding” models, in which stimulus features are used to model brain activity, and “Decoding” models, in which neural features are used to generated a stimulus output. Here we review the current state of encoding and decoding models in cognitive electrophysiology and provide a practical guide toward conducting experiments and analyses in this emerging field. Our examples focus on using linear models in the study of human language and audition. We show how to calculate auditory receptive fields from natural sounds as well as how to decode neural recordings to predict speech. The paper aims to be a useful tutorial to these approaches, and a practical introduction to using machine learning and applied statistics to build models of neural activity. The data analytic approaches we discuss may also be applied to other sensory modalities, motor systems, and cognitive systems, and we cover some examples in these areas. In addition, a collection of Jupyter notebooks is publicly available as a complement to the material covered in this paper, providing code examples and tutorials for predictive modeling in python. The aimis to provide a practical understanding of predictivemodeling of human brain data and to propose best-practices in conducting these analyses.},
-	journal = {Frontiers in Systems Neuroscience},
-	author = {Holdgraf, Christopher Ramsay and Rieger, J.W. and Micheli, C. and Martin, S. and Knight, R.T. and Theunissen, F.E.},
-	year = {2017},
-	keywords = {Decoding models, Encoding models, Electrocorticography (ECoG), Electrophysiology/evoked potentials, Machine learning applied to neuroscience, Natural stimuli, Predictive modeling, Tutorials}
-}
-
-@book{ruby,
-  title     = {The Ruby Programming Language},
-  author    = {Flanagan, David and Matsumoto, Yukihiro},
-  year      = {2008},
-  publisher = {O'Reilly Media}
+@ARTICLE{Jouganous2017-tg,
+  title     = "Inferring the Joint Demographic History of Multiple Populations:
+               Beyond the Diffusion Approximation",
+  author    = "Jouganous, Julien and Long, Will and Ragsdale, Aaron P and
+               Gravel, Simon",
+  journal   = "Genetics",
+  publisher = "Genetics Soc America",
+  volume    =  206,
+  number    =  3,
+  pages     = "1549--1567",
+  abstract  = "Understanding variation in allele frequencies across populations
+               is a central goal of population genetics. Classical models for
+               the distribution of allele frequencies, using forward simulation,
+               coalescent theory, or the diffusion approximation, have been
+               applied extensively for demographic inference, medical study
+               design, and evolutionary studies. Here we propose a tractable
+               model of ordinary differential equations for the evolution of
+               allele frequencies that is closely related to the diffusion
+               approximation but avoids many of its limitations and
+               approximations. We show that the approach is typically faster,
+               more numerically stable, and more easily generalizable than the
+               state-of-the-art software implementation of the diffusion
+               approximation. We present a number of applications to human
+               sequence data, including demographic inference with a
+               five-population joint frequency spectrum and a discussion of the
+               robustness of the out-of-Africa model inference to the choice of
+               modern population.",
+  month     =  jul,
+  year      =  2017,
+  keywords  = "demographic inference; diffusion approximation; joint allele
+               frequency spectrum; moments equations",
+  language  = "en"
 }
