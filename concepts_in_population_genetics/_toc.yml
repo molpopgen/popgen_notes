@@ -8,6 +8,10 @@ parts:
   numbered: true
   chapters:
   - file: evolutionary_graphs
+  - file: species_trees
+  - file: pedigrees_gene_trees
+  - file: pedigrees_random_mating
+  - file: mutations_on_gene_trees
   - file: population_graphs
   - file: gene_trees_to_data
 - caption: Appendix
