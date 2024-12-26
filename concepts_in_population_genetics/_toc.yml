@@ -9,6 +9,7 @@ parts:
   chapters:
   - file: evolutionary_graphs
   - file: population_graphs
+  - file: gene_trees_to_data
 - caption: Appendix
   numbered: true
   chapters:
