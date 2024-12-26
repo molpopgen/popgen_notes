@@ -64,6 +64,22 @@ Fundamentally, gene trees display:
    Each node gets a unique label.
 3. Edges display the transmission of one genome to another.
 
+
+```{attention} Caution!
+
+It is important to remember the following points when thinking about gene trees and their associated pedigrees:
+
+* A given pedigree has a fixed structure that describes the *familial* relationships.
+* This pedigree structure *constrains* the pathways for gene inheritance.
+  (Genes are only inherited from parents.)
+* The gene trees for a given pedigree shown in this document are *examples*.
+  There are many possible gene trees for a given pedigree.
+  For a single nonrecombining segment of DNA, there is only a 50% chance that it is passed to an offspring.
+  When a family has more than one offspring, a given DNA segment may be passed to 0, 1, 2, etc., offspring.
+* We often only have DNA data from the most recent generation of a pedigree.
+  We therefore have to consider multiple possible pathways by which that information passed from the founders to our genotyped individuals.
+```
+
 {numref}`two_sibs` shows a pedigree with two siblings.
 {numref}`two_sibs_gene_dropping` and {numref}`two_sibs_gene_dropping_2` show two examples of genome inheritance given this pedigree.
 In {numref}`two_sibs_gene_dropping` , both offspring inherit the same two alleles while in {numref}`two_sibs_gene_dropping_2`, the two siblings inherit different alleles from each parent for both of their genomes.
