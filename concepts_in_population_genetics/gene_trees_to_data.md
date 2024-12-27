@@ -10,6 +10,14 @@ kernelspec:
   name: python3
 ---
 
+```{code-cell} python
+:tags: ["remove-input"]
+import os
+import msprime
+import tskit
+from myst_nb import glue
+```
+
 # Gene trees and DNA data
 
 This section emphasizes that our *data* are the outcome of a graphical process.
@@ -21,9 +29,34 @@ The genome position of each site labels the remaining columns and each genotype 
 
 ```{code-cell} python
 :tags: ["remove-input"]
-import os
-import msprime
-import tskit
+ts = msprime.sim_ancestry(5, population_size=10000, sequence_length=100, random_seed=91234)
+ts = msprime.sim_mutations(tree_sequence=ts, random_seed=123458, rate=5e-7)
+tables = ts.tables
+tables.compute_mutation_parents()
+ts = tables.tree_sequence()
+```
+
+```{code-cell} python
+:tags: ["remove-input"]
+variant_dict = {}
+individuals = [i.id + 1 for i in ts.individuals()]
+for v in ts.variants():
+    genotypes = []
+    for i in ts.individuals():
+        genotype =(v.alleles[v.genotypes[i.nodes[0]]], v.alleles[v.genotypes[i.nodes[1]]])
+        genotypes.append(f"{genotype[0]}/{genotype[1]}")
+    variant_dict[str(int(v.site.position))] = genotypes
+variant_dict["individual"] = individuals
+```
+
+```{code-cell} python
+:tags: ["remove-input", "remove-output"]
+import polars as pl
+df = pl.DataFrame(variant_dict)
+glue("genotype-table", df);
+```
+
+```{glue:} genotype-table
 ```
 
 From this *variation table*, you can read off whether or not each individual is a heterozygote or a homozygote for each of the possible alleles.
@@ -64,35 +97,6 @@ Further, for the gene trees:
 
 * We only show the sites where mutations occurred.
 * Therefore, you can assume that all other sites have the *ancestral state* for all sampled individuals/nodes.
-
-```{code-cell} python
-:tags: ["remove-input"]
-ts = msprime.sim_ancestry(5, population_size=10000, sequence_length=100, random_seed=91234)
-ts = msprime.sim_mutations(tree_sequence=ts, random_seed=123458, rate=5e-7)
-tables = ts.tables
-tables.compute_mutation_parents()
-ts = tables.tree_sequence()
-```
-
-```{code-cell} python
-:tags: ["remove-input"]
-variant_dict = {}
-individuals = [i.id + 1 for i in ts.individuals()]
-for v in ts.variants():
-    genotypes = []
-    for i in ts.individuals():
-        genotype =(v.alleles[v.genotypes[i.nodes[0]]], v.alleles[v.genotypes[i.nodes[1]]])
-        genotypes.append(f"{genotype[0]}/{genotype[1]}")
-    variant_dict[str(int(v.site.position))] = genotypes
-variant_dict["individual"] = individuals
-```
-
-```{code-cell} python
-:tags: ["remove-input"]
-import polars as pl
-df = pl.DataFrame(variant_dict)
-print(df)
-```
 
 ```{code-cell} python
 :tags: ["remove-input"]
