@@ -14,6 +14,10 @@ parts:
   - file: mutations_on_gene_trees
   - file: population_graphs
   - file: gene_trees_to_data
+- caption: Population genetic data
+  numbered: true
+  chapters:
+  - file: allele_frequency_spectrum
 - caption: Appendix
   numbered: true
   chapters:
