@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import msprime
 import tskit
 from myst_nb import glue
+from popgen_notes_content.patch_df_repr import patch_repr
 ```
 
 ```{code-cell} python
@@ -96,24 +97,25 @@ for i in ts.sites():
 :tags: ["remove-input", "remove-output"]
 import polars as pl
 df = pl.DataFrame(variant_dict)
+df = patch_repr(df)
 glue("genotype-table", df);
 ```
 
 ```{code-cell} python
 :tags: ["remove-input", "remove-output"]
-df = pl.DataFrame(anc_state_per_site)
+df = patch_repr(pl.DataFrame(anc_state_per_site))
 glue("anc_state_per_site", df);
 ```
 
 ```{code-cell} python
 :tags: ["remove-input", "remove-output"]
-df_ms = pl.DataFrame(variant_dict_ms_style)
+df_ms = patch_repr(pl.DataFrame(variant_dict_ms_style))
 glue("genotype-table-ms", df_ms);
 ```
 
 ```{code-cell} python
 :tags: ["remove-input", "remove-output"]
-df_maf = pl.DataFrame(variant_dict_minor_allele_encoded_as_1)
+df_maf = patch_repr(pl.DataFrame(variant_dict_minor_allele_encoded_as_1))
 glue("genotype-table-maf", df_maf);
 ```
 
@@ -121,6 +123,8 @@ Consider the following autosomal genotype table for five diploid individuals:
 
 ```{glue:} genotype-table
 ```
+
+The numbers refer to positions in the genome where there is variation in DNA sequence.
 
 ## Common data encodings
 
@@ -160,7 +164,7 @@ for key, value in variant_dict_ms_style.items():
     if key != "individual":
         temp = sum([i.count("1") for i in value])
         daf[key] = temp
-df_ms_daf = pl.DataFrame(daf)
+df_ms_daf = patch_repr(pl.DataFrame(daf))
 df_ms_daf
 ```
 
@@ -175,7 +179,7 @@ for key, value in variant_dict_minor_allele_encoded_as_1.items():
     if key != "individual":
         temp = sum([i.count("1") for i in value])
         maf[key] = temp
-df_maf = pl.DataFrame(maf)
+df_maf = patch_repr(pl.DataFrame(maf))
 df_maf
 ```
 
@@ -205,7 +209,7 @@ dafs = defaultdict(int)
 for v in sorted(daf.values()):
     dafs[str(v)] += 1
 
-dafs_df = pl.DataFrame(dafs)
+dafs_df = patch_repr(pl.DataFrame(dafs))
 dafs_df
 ```
 
@@ -252,8 +256,7 @@ mafs = defaultdict(int)
 for v in sorted(maf.values()):
     mafs[str(v)] += 1
 
-mafs_df = pl.DataFrame(mafs)
-mafs_df
+mafs_df = patch_repr(pl.DataFrame(mafs))
 n = 2*ts.num_individuals
 assert n == 10
 fs = [0]*(n//2)
