@@ -16,6 +16,7 @@ import os
 import msprime
 import tskit
 from myst_nb import glue
+from popgen_notes_content.patch_df_repr import patch_repr
 ```
 
 # Gene trees and DNA data
@@ -52,7 +53,7 @@ variant_dict["individual"] = individuals
 ```{code-cell} python
 :tags: ["remove-input", "remove-output"]
 import polars as pl
-df = pl.DataFrame(variant_dict)
+df = patch_repr(pl.DataFrame(variant_dict))
 glue("genotype-table", df);
 ```
 

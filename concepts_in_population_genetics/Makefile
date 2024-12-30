@@ -8,10 +8,10 @@ html: $(INDEX)
 pdf: $(PDF)
 
 $(INDEX): $(MDFILES)
-	jupyter book build -W .
+	PYTHONPATH=.. jupyter book build -W .
 		
 $(PDF): $(MDFILES)
-	jupyter book build -W --builder pdflatex  .
+	PYTHONPATH=.. jupyter book build -W --builder pdflatex  .
 
 clean:
 	rm -rf _build
