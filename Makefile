@@ -52,17 +52,14 @@ concepts_in_population_genetics/_build/latex/concepts_in_population_genetics.pdf
 concepts_in_population_genetics/_build/html/index.html: $(FIGS) $(DATA) $(BOOKMDFILES)
 	make -C concepts_in_population_genetics html
 
-figures/human_chimp_gorilla.svg: figures/python/human_chimp_gorilla.py
-	python $<
+%.svg: popgen_notes_content/**.py
+	python -m popgen_notes_content $(basename $(@F) .svg)
 
-figures/human_chimp_gorilla_colored_edges.svg: figures/python/human_chimp_gorilla.py
-	python $<
+figures/human_chimp_gorilla.svg: popgen_notes_content/human_chimp_gorilla.py
+figures/human_chimp_gorilla_colored_edges.svg: popgen_notes_content/human_chimp_gorilla.py
+figures/human_chimp_gorilla_with_mutations.svg: popgen_notes_content/human_chimp_gorilla.py
+figures/human_chimp_gorilla_with_multiple_hits.svg: popgen_notes_content/human_chimp_gorilla.py
 
-figures/human_chimp_gorilla_with_mutations.svg: figures/python/human_chimp_gorilla.py
-	python $<
-
-figures/human_chimp_gorilla_with_multiple_hits.svg: figures/python/human_chimp_gorilla.py
-	python $<
 
 figures/trio.png: figures/R/plot_simple_pedigree.R figures/R/trio.txt
 	Rscript --vanilla figures/R/plot_simple_pedigree.R figures/R/trio.txt $@
