@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Pedigrees and “gene trees” &#8212; Concepts in population genetics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pedigrees_gene_trees';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Pedigrees in randomly mating populations" href="pedigrees_random_mating.html" />
+    <link rel="prev" title="2. Species trees" href="species_trees.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Concepts in population genetics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Concepts in population genetics
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphs in evolutionary biology</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="evolutionary_graphs.html">1. Evolutionary graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="species_trees.html">2. Species trees</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Pedigrees and “gene trees”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pedigrees_random_mating.html">4. Pedigrees in randomly mating populations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutations_on_gene_trees.html">5. Mutations on gene trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="population_graphs.html">6. Population graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_trees_to_data.html">7. Gene trees and DNA data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Population genetic data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="allele_frequency_spectrum.html">8. The allele frequency spectrum</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="gene_dropping_explained.html">9. Gene dropping on pedigrees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">10. References cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/molpopgen/popgen_nodes" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/molpopgen/popgen_nodes/issues/new?title=Issue%20on%20page%20%2Fpedigrees_gene_trees.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pedigrees_gene_trees.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pedigrees and “gene trees”</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pedigrees-and-gene-trees">
+<span id="pedigrees-gene-trees"></span><h1><span class="section-number">3. </span>Pedigrees and “gene trees”<a class="headerlink" href="#pedigrees-and-gene-trees" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="#trio"><span class="std std-numref">Fig. 3.1</span></a> shows a simple pedigree called a “trio.”
+Trios consist of two parents with a single offspring.
+This pedigree uses standard notation:</p>
+<ol class="arabic simple">
+<li><p>Males (individuals producing sperm) are shown as squares.</p></li>
+<li><p>Females (individuals producing eggs) are shown as circles.</p></li>
+</ol>
+<p>The individuals in the pedigree have numeric labels starting with 1 (one).
+Individuals at the top of the pedigree are ancestors to those appearing nearer the bottom.</p>
+<figure class="align-default" id="trio">
+<img alt="_images/trio.png" src="_images/trio.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A “trio” pedigree.</span><a class="headerlink" href="#trio" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The edges that connect parents to children in a pedigree represent <em>meiosis</em>.
+In other words, parental chromosomes were replicated (and mutated and recombined), and then a single new chromosome was passed down to an offspring.</p>
+<p>If we consider the case of autosomal inheritance in diploid organisms like humans, then each individual contains two copies of the genome, one inherited via sperm and the other via egg.</p>
+<p>The principles of Mendelian inheritance tell us that:</p>
+<ol class="arabic simple">
+<li><p>The two parents in <a class="reference internal" href="#trio"><span class="std std-numref">Fig. 3.1</span></a> each have two genomes.
+Let’s label the genomes of parent 1 as <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>.
+Let’s label the genomes of parent 2 as <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p></li>
+<li><p>Ignoring some details of meiosis for now (mutation and recombination), individual 3
+will inherit genome <code class="docutils literal notranslate"><span class="pre">1</span></code> half the time and genome <code class="docutils literal notranslate"><span class="pre">2</span></code> half the time from parent <code class="docutils literal notranslate"><span class="pre">1</span></code>.
+Likewise, parent 1 will pass on either genome <code class="docutils literal notranslate"><span class="pre">3</span></code> or genome <code class="docutils literal notranslate"><span class="pre">4</span></code> with equal probability.</p></li>
+</ol>
+<p>When discussing autosomal inheritance in diploids, we will adopt the following convention for <code class="docutils literal notranslate"><span class="pre">genome</span></code> labels:</p>
+<ul class="simple">
+<li><p>For an <em>individual</em> in the pedigree with label <span class="math notranslate nohighlight">\(i\)</span>, that individual’s two genomes will be labelled <span class="math notranslate nohighlight">\(2i - 1\)</span> and <span class="math notranslate nohighlight">\(2i\)</span></p></li>
+</ul>
+<p>For example, individual <code class="docutils literal notranslate"><span class="pre">7</span></code> in a pedigree will have genomes <span class="math notranslate nohighlight">\(2\times 7 - 1 = 13\)</span> and <span class="math notranslate nohighlight">\(2\times 7 = 14\)</span>.
+This convention will allow us to track both <em>genes</em> and <em>individuals</em>.</p>
+<figure class="align-default" id="trio-tree">
+<img alt="_images/trio.svg" src="_images/trio.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">An example of <em>genome</em> inheritance, given the pedigree structure in <a class="reference internal" href="#trio"><span class="std std-numref">Fig. 3.1</span></a>.
+The node labels are <code class="docutils literal notranslate"><span class="pre">individual:</span> <span class="pre">genome</span></code>.
+The values given for <code class="docutils literal notranslate"><span class="pre">genome</span></code> follow the convention described in the main text and individual
+labels are identical to <a class="reference internal" href="#trio"><span class="std std-numref">Fig. 3.1</span></a>.</span><a class="headerlink" href="#trio-tree" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Figure <a class="reference internal" href="#trio-tree"><span class="std std-numref">Fig. 3.2</span></a> shows an example of “gene dropping” applied to the pedigree from <a class="reference internal" href="#trio"><span class="std std-numref">Fig. 3.1</span></a>.
+Following our labelling convention described above, we see that the offspring individual (number 3) inherited its first genome (3) from genome 2 which was found in the parent individual labelled 1.
+The other genome came from genome 3 in individual 2.</p>
+<p>Figure <a class="reference internal" href="#trio-tree"><span class="std std-numref">Fig. 3.2</span></a> is a new type of graph that we may call a “gene tree”.
+The nodes in a gene tree usually refer to gene (or genome) sequences and their ancestors.
+Figure <a class="reference internal" href="#trio-tree"><span class="std std-numref">Fig. 3.2</span></a> takes the extra step of tracking the specific <em>individual</em> to which each genome belongs or belonged.</p>
+<p>Fundamentally, gene trees display:</p>
+<ol class="arabic simple">
+<li><p>Nodes, which refer to <em>genomes</em>.</p></li>
+<li><p>The height of the node in the tree indicate its <em>birth time</em>.
+In <a class="reference internal" href="#trio-tree"><span class="std std-numref">Fig. 3.2</span></a>, the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis is in units of generations in the past.
+Thus, the genomes belonging to the parents exist (or existed) one generation ago.
+Each node gets a unique label.</p></li>
+<li><p>Edges display the transmission of one genome to another.</p></li>
+</ol>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Caution!</p>
+<p>It is important to remember the following points when thinking about gene trees and their associated pedigrees:</p>
+<ul class="simple">
+<li><p>A given pedigree has a fixed structure that describes the <em>familial</em> relationships.</p></li>
+<li><p>This pedigree structure <em>constrains</em> the pathways for gene inheritance.
+(Genes are only inherited from parents.)</p></li>
+<li><p>The gene trees for a given pedigree shown in this document are <em>examples</em>.
+There are many possible gene trees for a given pedigree.
+For a single nonrecombining segment of DNA, there is only a 50% chance that it is passed to an offspring.
+When a family has more than one offspring, a given DNA segment may be passed to 0, 1, 2, etc., offspring.</p></li>
+<li><p>We often only have DNA data from the most recent generation of a pedigree.
+We therefore have to consider multiple possible pathways by which that information passed from the founders to our genotyped individuals.</p></li>
+</ul>
+</div>
+<p><a class="reference internal" href="#two-sibs"><span class="std std-numref">Fig. 3.3</span></a> shows a pedigree with two siblings.
+<a class="reference internal" href="#two-sibs-gene-dropping"><span class="std std-numref">Fig. 3.4</span></a> and <a class="reference internal" href="#two-sibs-gene-dropping-2"><span class="std std-numref">Fig. 3.5</span></a> show two examples of genome inheritance given this pedigree.
+In <a class="reference internal" href="#two-sibs-gene-dropping"><span class="std std-numref">Fig. 3.4</span></a> , both offspring inherit the same two alleles while in <a class="reference internal" href="#two-sibs-gene-dropping-2"><span class="std std-numref">Fig. 3.5</span></a>, the two siblings inherit different alleles from each parent for both of their genomes.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Take a moment to practice!
+It is probably a good idea to make sure that you really understand what these images are showing.
+Instead of skimming over the graphics, take some time to make sure that you understand how the <code class="docutils literal notranslate"><span class="pre">individual:</span> <span class="pre">genome</span></code> annotations in <a class="reference internal" href="#two-sibs-gene-dropping"><span class="std std-numref">Fig. 3.4</span></a> and <a class="reference internal" href="#two-sibs-gene-dropping-2"><span class="std std-numref">Fig. 3.5</span></a> map on to the pedigree in <a class="reference internal" href="#two-sibs"><span class="std std-numref">Fig. 3.3</span></a>.</p>
+<p>See <a class="reference internal" href="gene_dropping_explained.html#gene-dropping-appendix"><span class="std std-numref">Section 9</span></a> if you need more help on how these images work.</p>
+</div>
+<figure class="align-default" id="two-sibs">
+<img alt="_images/two_sibs.png" src="_images/two_sibs.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">A pedigree with two siblings.</span><a class="headerlink" href="#two-sibs" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="two-sibs-gene-dropping">
+<img alt="_images/two_sibs.svg" src="_images/two_sibs.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.4 </span><span class="caption-text">One example of “gene dropping” onto the pedigree from <a class="reference internal" href="#two-sibs"><span class="std std-numref">Fig. 3.3</span></a>.</span><a class="headerlink" href="#two-sibs-gene-dropping" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="two-sibs-gene-dropping-2">
+<img alt="_images/two_sibs_2.svg" src="_images/two_sibs_2.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Another example of “gene dropping” onto the pedigree from <a class="reference internal" href="#two-sibs"><span class="std std-numref">Fig. 3.3</span></a>.</span><a class="headerlink" href="#two-sibs-gene-dropping-2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The pedigree shown in <a class="reference internal" href="#multigen-pedigree"><span class="std std-numref">Fig. 3.6</span></a> shows multiple generations of a family, ending with two sets of cousins.
+Individuals 11 and 12 are first cousins (sharing grandparents) to individuals 13 and 14.</p>
+<figure class="align-default" id="multigen-pedigree">
+<img alt="_images/multigen_pedigree.png" src="_images/multigen_pedigree.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.6 </span><span class="caption-text">A multigeneration pedigree.</span><a class="headerlink" href="#multigen-pedigree" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Starting with these sets of cousins, we can imagine starting to trace their genomes back in time until we reach the grand-parental generation. For example, for each genome of the two genomes in individual 11, the genome came either from individual 7 or from 8. If it came from 7, then we know that it came from one of the two grandparents labelled 1 or 2.  But if it came from 8, then the grandparent of that genome was either 3 or 4. Therefore, in order for our cousins to have inherited a genome from the same common ancestor, the pathways of inheritance for those genomes must trace back to the grandparent couple 3 and 4. Further, the genomes must come from the same grandparent and then they must come from the <em>same genome</em> from that shared grandparent. If all of this happens, then we say that the two genomes have “coalesced” into their common ancestor.</p>
+<p><a class="reference internal" href="#multigen-pedigree-tree"><span class="std std-numref">Fig. 3.7</span></a> shows the result of “gene dropping” onto this pedigree.
+We see that all four cousins share a genome descended from genome 5 of grandparent 3.</p>
+<p>The tree in <a class="reference internal" href="#multigen-pedigree-tree"><span class="std std-numref">Fig. 3.7</span></a> shows several interesting features:</p>
+<ul class="simple">
+<li><p>Our pedigree (<a class="reference internal" href="#multigen-pedigree"><span class="std std-numref">Fig. 3.6</span></a>) contains six grandparents (two generations ago), yet only four of them (individuals 2, 3, 5, and 6) contributed alleles to the grandchildren.</p></li>
+<li><p>For those grandparents that did contribute to the genomes of their grandchildren, all of them only passed on one of their two possible alleles.</p></li>
+<li><p>Turning to the parental generation (1 generation ago), we see that all four parents contributed genes to the final generation, yet only individual 10 passed on a copy of each of their alleles.</p></li>
+<li><p>There are multiple occasions where a single allele was passed on to more than one offspring.
+For example, allele 5 was passed from individual 3 to individuals 8 and 9.
+When an allele is transmitted to multiple descendant nodes, we get a branching pattern in our tree.
+When an allele is transmitted to only a single descendant in the tree, we get straight lines, or “unary transmission” of the gene copy.
+An example of unary transmission starts with allele 11 in grandparent 6.
+It is passed to individual 10, becoming allele 20.
+It is then passed on to individual 14, becoming allele 28.</p></li>
+<li><p>There are 4 distinct trees shown in this image!</p></li>
+</ul>
+<figure class="align-default" id="multigen-pedigree-tree">
+<img alt="_images/multigen_pedigree.svg" src="_images/multigen_pedigree.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Genome inheritance on the pedigree from <a class="reference internal" href="#multigen-pedigree"><span class="std std-numref">Fig. 3.6</span></a>.</span><a class="headerlink" href="#multigen-pedigree-tree" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We may also note that much of the information in <a class="reference internal" href="#multigen-pedigree-tree"><span class="std std-numref">Fig. 3.7</span></a> is not especially useful in understanding the ancestry of the alleles found in our present-day individuals (those born 0 generations ago).
+There are many unary nodes, including unary nodes ancestral to nodes associated with branching events.
+<a class="reference internal" href="#multigen-pedigree-tree-simplified"><span class="std std-numref">Fig. 3.8</span></a> shows a “simplified” version of this image with unary transmission events removed and we stop at the most recent common ancestor of any set of nodes.
+This simplified tree is the <em>minimal</em> graph that we require to describe the <em>ancestral history</em> of the alleles in our present-day individuals.
+This simplified representation illustrates an important concept – the important information in a gene tree is the <em>branching structure</em> that illustrates the relationship among our sample of alleles/genomes.
+This branching relationship is completely analogous to what we discussed for species trees in <a class="reference internal" href="species_trees.html#species-trees"><span class="std std-numref">Section 2</span></a>.</p>
+<figure class="align-default" id="multigen-pedigree-tree-simplified">
+<img alt="_images/multigen_pedigree_simplified.svg" src="_images/multigen_pedigree_simplified.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.8 </span><span class="caption-text">The tree(s) from <a class="reference internal" href="#multigen-pedigree-tree"><span class="std std-numref">Fig. 3.7</span></a> simplified to only show non-unary inheritance and to stop at the most recent common ancestor of each node.</span><a class="headerlink" href="#multigen-pedigree-tree-simplified" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#multigen-pedigree-tree"><span class="std std-numref">Fig. 3.7</span></a> and <a class="reference internal" href="#multigen-pedigree-tree-simplified"><span class="std std-numref">Fig. 3.8</span></a> also reveal something that may be surprising.
+These gene trees come from a small familial pedigree (<a class="reference internal" href="#multigen-pedigree"><span class="std std-numref">Fig. 3.6</span></a>).
+However, we noted above that only 3/4 of the grandparents have directly contributed DNA to the most recent generation.
+In other words, “direct” DNA connections to even recent ancestors are quickly lost.
+This loss is due to the randomness of the “Mendelian lottery”.
+At an autosomal locus a given allele is only passed on to half of an individual’s offspring.
+Further, humans tend to have few offspring.
+Few offspring implies few chances to pass on genes, meaning that there is a high likelihood that an individual does <em>not</em> pass both of their alleles on to the next generation.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="species_trees.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Species trees</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pedigrees_random_mating.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Pedigrees in randomly mating populations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kevin R. Thornton
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

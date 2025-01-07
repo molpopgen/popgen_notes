@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Population graphs &#8212; Concepts in population genetics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'population_graphs';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Gene trees and DNA data" href="gene_trees_to_data.html" />
+    <link rel="prev" title="5. Mutations on gene trees" href="mutations_on_gene_trees.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Concepts in population genetics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Concepts in population genetics
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Graphs in evolutionary biology</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="evolutionary_graphs.html">1. Evolutionary graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="species_trees.html">2. Species trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pedigrees_gene_trees.html">3. Pedigrees and “gene trees”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pedigrees_random_mating.html">4. Pedigrees in randomly mating populations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutations_on_gene_trees.html">5. Mutations on gene trees</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Population graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gene_trees_to_data.html">7. Gene trees and DNA data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Population genetic data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="allele_frequency_spectrum.html">8. The allele frequency spectrum</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="gene_dropping_explained.html">9. Gene dropping on pedigrees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">10. References cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/molpopgen/popgen_nodes" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/molpopgen/popgen_nodes/issues/new?title=Issue%20on%20page%20%2Fpopulation_graphs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/population_graphs.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Population graphs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="population-graphs">
+<h1><span class="section-number">6. </span>Population graphs<a class="headerlink" href="#population-graphs" title="Link to this heading">#</a></h1>
+<p>When thinking about the evolution of a species, we need a way to conceptualize the relationships among different populations across the species’ geographic range.
+Our empirical studies usually involve contemporary <em>samples</em> (individuals) from one or more <em>locations</em> of this range.
+We often describe our samples using rather simplistic language.
+For example, “20 <em>Drosophila melanogaster</em> from Raleigh, North Carolina and 15 from Zimbabwe, Africa”.
+An example of human population labels is shown in <a class="reference internal" href="#jouganous-model-labels"><span class="std std-numref">Table 6.1</span></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="jouganous-model-labels">
+<caption><span class="caption-number">Table 6.1 </span><span class="caption-text">Population labels</span><a class="headerlink" href="#jouganous-model-labels" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AMH</p></td>
+<td><p>Anatomically modern humans</p></td>
+</tr>
+<tr class="row-odd"><td><p>OOA</p></td>
+<td><p>Out of Africa population</p></td>
+</tr>
+<tr class="row-even"><td><p>YRI</p></td>
+<td><p>Yoruba in Ibadan, Nigera</p></td>
+</tr>
+<tr class="row-odd"><td><p>CEU</p></td>
+<td><p>Utah Residents (CEPH) with Northern and Western European ancestry</p></td>
+</tr>
+<tr class="row-even"><td><p>CHB</p></td>
+<td><p>Han Chinese in Beijing, China</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Given a set of such population labels, we will attempt to describe the historical relationship between the locations that our samples come from.
+To do this, we will often envision a picture that contains information such as when our populations diverged from some common ancestral population, the history of changing population size in each population, and the history of migration events over time.
+Ignoring many important technical details, once we write down such a model, we can <em>infer</em> the parameters of the model using <em>genotype</em> data from our sampled individuals.
+Briefly, features of the data such as the similarities and differences in the frequencies of mutations are impacted by the demographic history.
+Therefore, we can “work backwards” to infer the details of a <em>specific</em> model given such data.</p>
+<p><a class="reference internal" href="#jouganous-model-fig"><span class="std std-numref">Fig. 6.1</span></a> shows a <em>demographic</em> history inferred from genotype data from three contemporary populations by <span id="id1">Jouganous <em>et al.</em> [<a class="reference internal" href="bibliography.html#id3" title="Julien Jouganous, Will Long, Aaron P Ragsdale, and Simon Gravel. Inferring the joint demographic history of multiple populations: beyond the diffusion approximation. Genetics, 206(3):1549–1567, July 2017.">JLRG17</a>]</span>.
+The population labels are in <a class="reference internal" href="#jouganous-model-labels"><span class="std std-numref">Table 6.1</span></a>.
+The contemporary populations are <code class="docutils literal notranslate"><span class="pre">YRI</span></code>, <code class="docutils literal notranslate"><span class="pre">CHB</span></code>, and <code class="docutils literal notranslate"><span class="pre">CEU</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">OOA</span></code> and <code class="docutils literal notranslate"><span class="pre">AMH</span></code> populations are part of the model and not a population from which we have samples.
+We know from many lines of evidence a subset of our ancestors left Africa, settled in what is now called the Middle East, and from there spread to the rest of the world.
+Our model makes a set of simplifying assumptions:</p>
+<ul class="simple">
+<li><p>Contemporary Yoruba are the direct descendants of “anatomically modern humans”, or <code class="docutils literal notranslate"><span class="pre">AMH</span></code>, which is modeled as a single ancestral source of our species.</p></li>
+<li><p>At some point in the past, some individuals “branched off” from <code class="docutils literal notranslate"><span class="pre">AMH</span></code>, leaving Africa.
+This <code class="docutils literal notranslate"><span class="pre">OOA</span></code> population may been small.</p></li>
+<li><p>The contemporary non-African populations then branched off from <code class="docutils literal notranslate"><span class="pre">OOA</span></code> to populate
+Europe and Asia.
+The spreading through these continents is modeled as exponential population growth.</p></li>
+<li><p>Migration is allowed between populations when they coexist.</p></li>
+</ul>
+<p><a class="reference internal" href="#jouganous-model-fig"><span class="std std-numref">Fig. 6.1</span></a> is the result of using the genotype data to inform use about specific values for each of these parameters.</p>
+<p>Pictures like <a class="reference internal" href="#jouganous-model-fig"><span class="std std-numref">Fig. 6.1</span></a> are graphs that describe a <em>demographic history</em>.
+When the parameters of the graph are inferred from data, it is important that we recognize the following:</p>
+<ul class="simple">
+<li><p>The graph cannot be said to be the “true history” of humans!
+The models make several simplifying assumptions.
+For example, they ignore that populations of individuals exist in continuous space and instead assume that individuals can be treated as existing within discrete populations that interact in simple ways.</p></li>
+<li><p>Further, the parameters belong to a certain “picture” (model).
+Adding more features to, or taking features away from, the model will change the parameter estimates.
+Adding and subtracting model features creates a new model.
+We currently do not have effective methods for evaluating large numbers of models to find the “best” one.
+We know from computer simulations that we can accurately infer the parameters of models like <a class="reference internal" href="#jouganous-model-fig"><span class="std std-numref">Fig. 6.1</span></a> if such a model is the truth.
+But <em>model selection</em>, or choosing the best model from a large set, is very difficult.
+The difficulty exists in part because the search space of models is infinitely large!</p></li>
+</ul>
+<p>The above list may these parameter inferences not sound very useful.
+However:</p>
+<ul class="simple">
+<li><p>If we simulate data from the model plus its inferred parameters, we get out data that matches many important features of our input data.</p></li>
+<li><p>In many cases, such simulations also predict features of our data that were <em>not</em> used for inference.</p></li>
+</ul>
+<p>In other words, the parameters inferred using these simplified models have some <em>predictive</em> ability, and that is very useful.
+As we gather more data from contemporary populations, we can ask if our old models predict features of our new data.
+If we obtain data from ancient samples (human remains preserved in a bog in Northern Europe, for example), we can also ask if those genotypes are consistent with what we’d expect from samples of that age.
+If not, we can refine our models.</p>
+<p>The previous paragraphs focus the discussion on inferences about the detailed history of populations.
+Interest in studying population history for the sole sake of understanding that history is largely limited to humans.
+In other study systems, we typically only concern ourselves with such inferences if they have scientific or policy implications.
+For example, it may be useful to know something about the history of endangered bird or insect species in order to make decisions about conservation practices.
+Scientifically, the interest in demographic inference exists because we are interested in how natural selection affects genome evolution and both demography and selection affect genotype frequencies across populations of the species that we study.</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<figure class="align-default" id="jouganous-model-fig" style="width: 300px">
+<img alt="_images/04a47d47ebabf8b2855cb8e6f9af481a21fe610cb89cd6cbd13333d8696c92ad.png" src="_images/04a47d47ebabf8b2855cb8e6f9af481a21fe610cb89cd6cbd13333d8696c92ad.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">A graphical model of relationships between multiple human populations.
+From bottom to top, time moves to the past.
+Each population gets a different color and the width is proportional to the population size at a given time in the past.
+Thick arrows represent founding events.
+For example, the thick green arrow from <code class="docutils literal notranslate"><span class="pre">OOA</span></code> to <code class="docutils literal notranslate"><span class="pre">CEU</span></code> means that the latter population arose from the former.
+The thinner arrows refer to continuous migration between populations.
+The color of the arrow tip refers to the <em>source</em> of migration and the arrow points at the <em>destination</em>.
+The population labels are defined in <a class="reference internal" href="#jouganous-model-labels"><span class="std std-numref">Table 6.1</span></a>.
+The time units are in years assuming a generation time of 29 years per generation.</span><a class="headerlink" href="#jouganous-model-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mutations_on_gene_trees.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Mutations on gene trees</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gene_trees_to_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Gene trees and DNA data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kevin R. Thornton
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

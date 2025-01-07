@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="600" version="1.1" width="800">
+  <defs>
+    <style type="text/css"><![CDATA[.background path {fill: #808080; fill-opacity: 0}.background path:nth-child(odd) {fill-opacity: .1}.x-regions rect {fill: yellow; stroke: black; opacity: 0.5}.axes {font-size: 14px}.x-axis .tick .lab {font-weight: bold; dominant-baseline: hanging}.axes, .tree {font-size: 14px; text-anchor: middle}.axes line, .edge {stroke: black; fill: none}.axes .ax-skip {stroke-dasharray: 4}.y-axis .grid {stroke: #FAFAFA}.node > .sym {fill: black; stroke: none}.site > .sym {stroke: black}.mut text {fill: red; font-style: italic}.mut.extra text {fill: hotpink}.mut line {fill: none; stroke: none}.mut .sym {fill: none; stroke: red}.mut.extra .sym {stroke: hotpink}.node .mut .sym {stroke-width: 1.5px}.tree text, .tree-sequence text {dominant-baseline: central}.plotbox .lab.lft {text-anchor: end}.plotbox .lab.rgt {text-anchor: start}.polytomy line {stroke: black; stroke-dasharray: 1px, 1px}.polytomy text {paint-order:stroke;stroke-width:0.3em;stroke:white}]]></style>
+  </defs>
+  <g class="tree-sequence">
+    <g class="axes">
+      <g class="y-axis">
+        <g class="title" transform="translate(0 284.1)">
+          <text class="lab" text-anchor="middle" transform="translate(11) rotate(-90)">Time ago (generations)</text>
+        </g>
+        <line class="ax-line" x1="56.8" x2="56.8" y1="558.2" y2="10"/>
+        <g class="ticks">
+          <g class="tick" transform="translate(56.8 556.894)">
+            <line x1="0" x2="-5" y1="0" y2="0"/>
+            <g transform="translate(-6 0)">
+              <text class="lab" text-anchor="end">100</text>
+            </g>
+          </g>
+          <g class="tick" transform="translate(56.8 545.137)">
+            <line x1="0" x2="-5" y1="0" y2="0"/>
+            <g transform="translate(-6 0)">
+              <text class="lab" text-anchor="end">1000</text>
+            </g>
+          </g>
+          <g class="tick" transform="translate(56.8 427.567)">
+            <line x1="0" x2="-5" y1="0" y2="0"/>
+            <g transform="translate(-6 0)">
+              <text class="lab" text-anchor="end">10000</text>
+            </g>
+          </g>
+          <g class="tick" transform="translate(56.8 35.6664)">
+            <line x1="0" x2="-5" y1="0" y2="0"/>
+            <g transform="translate(-6 0)">
+              <text class="lab" text-anchor="end">40000</text>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g class="plotbox trees">
+      <g class="tree t0" transform="translate(56.8 0)">
+        <g class="plotbox">
+          <g class="c2 node n18 p0 root" transform="translate(502.51 26.8)">
+            <g class="a18 c2 node n16 p0" transform="translate(132.37 313.933)">
+              <g class="a16 i2 leaf node n4 p0 sample" transform="translate(-34.16 217.467)">
+                <path class="edge" d="M 0 0 V -217.467 H 34.16"/>
+                <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                <text class="lab" transform="translate(0 11)">3: 5</text>
+              </g>
+              <g class="a16 i3 leaf node n6 p0 sample" transform="translate(34.16 217.467)">
+                <path class="edge" d="M 0 0 V -217.467 H -34.16"/>
+                <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                <text class="lab" transform="translate(0 11)">4: 7</text>
+              </g>
+              <path class="edge" d="M 0 0 V -313.933 H -132.37"/>
+              <circle class="sym" cx="0" cy="0" r="3"/>
+              <text class="lab rgt" transform="translate(3 -7)"/>
+            </g>
+            <g class="a18 c2 m3 node n17 p0 s3" transform="translate(-132.37 270.945)">
+              <g class="a17 c2 m2 node n14 p0 s2" transform="translate(-128.1 213.486)">
+                <g class="a14 c2 m1 node n11 p0 s1" transform="translate(102.48 40.2603)">
+                  <g class="a11 i4 leaf node n9 p0 sample" transform="translate(51.24 6.70827)">
+                    <path class="edge" d="M 0 0 V -6.70827 H -51.24"/>
+                    <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                    <text class="lab" transform="translate(0 11)">5: 10</text>
+                  </g>
+                  <g class="a11 c2 node n10 p0" transform="translate(-51.24 5.21491)">
+                    <g class="a10 i0 leaf node n1 p0 sample" transform="translate(-34.16 1.49336)">
+                      <path class="edge" d="M 0 0 V -1.49336 H 34.16"/>
+                      <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                      <text class="lab" transform="translate(0 11)">1: 2</text>
+                    </g>
+                    <g class="a10 i1 leaf node n2 p0 sample" transform="translate(34.16 1.49336)">
+                      <path class="edge" d="M 0 0 V -1.49336 H -34.16"/>
+                      <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                      <text class="lab" transform="translate(0 11)">2: 3</text>
+                    </g>
+                    <path class="edge" d="M 0 0 V -5.21491 H 51.24"/>
+                    <circle class="sym" cx="0" cy="0" r="3"/>
+                    <text class="lab lft" transform="translate(-3 -7)"/>
+                  </g>
+                  <path class="edge" d="M 0 0 V -40.2603 H -102.48"/>
+                  <g class="mut m1 s1" transform="translate(0 -32.8823)">
+                    <line x1="0" x2="0" y1="0" y2="32.8823"/>
+                    <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
+                    <text class="lab rgt" transform="translate(5 0)">60.0: G -&gt; T</text>
+                  </g>
+                  <circle class="sym" cx="0" cy="0" r="3"/>
+                  <text class="lab rgt" transform="translate(3 -7)"/>
+                </g>
+                <g class="a14 c2 node n13 p0" transform="translate(-102.48 0.464454)">
+                  <g class="a13 i3 leaf node n7 p0 sample" transform="translate(51.24 46.5041)">
+                    <path class="edge" d="M 0 0 V -46.5041 H -51.24"/>
+                    <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                    <text class="lab" transform="translate(0 11)">4: 8</text>
+                  </g>
+                  <g class="a13 c2 node n12 p0" transform="translate(-51.24 22.1723)">
+                    <g class="a12 i0 leaf node n0 p0 sample" transform="translate(-34.16 24.3318)">
+                      <path class="edge" d="M 0 0 V -24.3318 H 34.16"/>
+                      <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                      <text class="lab" transform="translate(0 11)">1: 1</text>
+                    </g>
+                    <g class="a12 i1 leaf node n3 p0 sample" transform="translate(34.16 24.3318)">
+                      <path class="edge" d="M 0 0 V -24.3318 H -34.16"/>
+                      <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                      <text class="lab" transform="translate(0 11)">2: 4</text>
+                    </g>
+                    <path class="edge" d="M 0 0 V -22.1723 H 51.24"/>
+                    <circle class="sym" cx="0" cy="0" r="3"/>
+                    <text class="lab lft" transform="translate(-3 -7)"/>
+                  </g>
+                  <path class="edge" d="M 0 0 V -0.464454 H 102.48"/>
+                  <circle class="sym" cx="0" cy="0" r="3"/>
+                  <text class="lab lft" transform="translate(-3 -7)"/>
+                </g>
+                <path class="edge" d="M 0 0 V -213.486 H 128.1"/>
+                <g class="mut m2 s2" transform="translate(0 -153.396)">
+                  <line x1="0" x2="0" y1="0" y2="153.396"/>
+                  <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
+                  <text class="lab lft" transform="translate(-5 0)">71.0: G -&gt; A</text>
+                </g>
+                <circle class="sym" cx="0" cy="0" r="3"/>
+                <text class="lab lft" transform="translate(-3 -7)"/>
+              </g>
+              <g class="a17 c2 node n15 p0" transform="translate(128.1 197.835)">
+                <g class="a15 i2 leaf node n5 p0 sample" transform="translate(-34.16 62.6199)">
+                  <path class="edge" d="M 0 0 V -62.6199 H 34.16"/>
+                  <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                  <text class="lab" transform="translate(0 11)">3: 6</text>
+                </g>
+                <g class="a15 i4 leaf m0 node n8 p0 s0 sample" transform="translate(34.16 62.6199)">
+                  <path class="edge" d="M 0 0 V -62.6199 H -34.16"/>
+                  <g class="mut m0 s0" transform="translate(0 -4.89294)">
+                    <line x1="0" x2="0" y1="0" y2="4.89294"/>
+                    <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
+                    <text class="lab rgt" transform="translate(5 0)">29.0: G -&gt; A</text>
+                  </g>
+                  <rect class="sym" height="6" width="6" x="-3" y="-3"/>
+                  <text class="lab" transform="translate(0 11)">5: 9</text>
+                </g>
+                <path class="edge" d="M 0 0 V -197.835 H -128.1"/>
+                <circle class="sym" cx="0" cy="0" r="3"/>
+                <text class="lab rgt" transform="translate(3 -7)"/>
+              </g>
+              <path class="edge" d="M 0 0 V -270.945 H 132.37"/>
+              <g class="mut m3 s3" transform="translate(0 -245.76)">
+                <line x1="0" x2="0" y1="0" y2="245.76"/>
+                <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
+                <text class="lab lft" transform="translate(-5 0)">95.0: T -&gt; G</text>
+              </g>
+              <circle class="sym" cx="0" cy="0" r="3"/>
+              <text class="lab lft" transform="translate(-3 -7)"/>
+            </g>
+            <circle class="sym" cx="0" cy="0" r="3"/>
+            <text class="lab" transform="translate(0 -11)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
