@@ -46,7 +46,7 @@
               <g class="mut m4 s2" transform="translate(0 -35.95)">
                 <line x1="0" x2="0" y1="0" y2="35.95"/>
                 <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
-                <text class="lab rgt" transform="translate(5 0)">800: T -&gt; C</text>
+                <text class="lab rgt" transform="translate(5 0)">800: A -&gt; C</text>
               </g>
               <rect class="sym" height="6" width="6" x="-3" y="-3"/>
               <text class="lab" transform="translate(0 11)">Gorilla</text>
@@ -67,7 +67,7 @@
                 <g class="mut m1 s0" transform="translate(0 -17.975)">
                   <line x1="0" x2="0" y1="0" y2="17.975"/>
                   <path class="sym" d="M -3,-3 l 6,6 M -3,3 l 6,-6"/>
-                  <text class="lab rgt" transform="translate(5 0)">42: T -&gt; T</text>
+                  <text class="lab rgt" transform="translate(5 0)">42: C -&gt; T</text>
                 </g>
                 <rect class="sym" height="6" width="6" x="-3" y="-3"/>
                 <text class="lab" transform="translate(0 11)">Chimp</text>

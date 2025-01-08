@@ -163,7 +163,7 @@ glue("jouganous-model", fig)
 ```
 
 ```{glue:figure} jouganous-model
-:figwidth: 300px
+:figwidth: 600px
 :name: "jouganous-model-fig"
 
 A graphical model of relationships between multiple human populations.
