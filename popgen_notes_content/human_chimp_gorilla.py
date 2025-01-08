@@ -132,6 +132,8 @@ def human_chimp_gorilla_with_multiple_hits():
     _ = tables.mutations.add_row(s2, node=gorilla, time=1, derived_state="C")
     _ = tables.mutations.add_row(s1, node=chimp, time=0.5, derived_state="T")
     tables.sort()
+    tables.build_index()
+    tables.compute_mutation_parents()
     treeseq = tables.tree_sequence()
 
     mutation_labels = {
