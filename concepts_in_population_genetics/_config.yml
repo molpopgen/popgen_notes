@@ -5,6 +5,10 @@ title: Concepts in population genetics
 author: Kevin R. Thornton
 logo:
 
+sphinx:
+  config:
+    html_show_copyright: false
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
